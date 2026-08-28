@@ -74,10 +74,15 @@
   --color-on-accent: var(--bone-50);
   --color-accent-hover: var(--blue-600);
   --color-accent-active-text: var(--bone-alpha-60);
+  /* Accent tints — lightest-blue surface + deep-blue line/detail */
+  --color-accent-subtle: var(--blue-50);
+  --color-accent-strong: var(--blue-800);
   /* Form validation — Ruby 90 */
   --color-danger: #ad2b03;
+  --color-danger-subtle: color-mix(in srgb, #ad2b03 5%, transparent);
   /* Compliance receipt — Approved */
   --color-success: #0b6e4f;
+  --color-success-subtle: color-mix(in srgb, #0b6e4f 5%, transparent);
 }
 
 /* ── Corner radius scale ─────────────────────────────────── */
@@ -228,6 +233,16 @@ img {
 
 /* Logos / icons render in the on-surface tint (coal via brightness(0)) */
 .theme-icon  { filter: var(--th-logo-filter); }
+/* Recolor an SVG icon to an exact token color: apply as a mask over a
+   `bg-*` element (e.g. `bg-accent icon-mask` with an inline mask-image). */
+.icon-mask {
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+}
 .backed-logo {
   opacity: 0.4;
   filter: brightness(0);
@@ -307,6 +322,7 @@ img {
   font-size: 40px;
   line-height: 1.1;
   letter-spacing: var(--tracking-display);
+  text-wrap: balance;
 }
 @media (min-width: 768px) { .text-display { font-size: 64px; line-height: 1.15; } }
 @media (min-width: 1280px) { .text-display { font-size: 80px; } }
@@ -318,6 +334,7 @@ img {
   font-size: 28px;
   line-height: 1.1;
   letter-spacing: var(--tracking-display);
+  text-wrap: balance;
 }
 @media (min-width: 768px) { .text-headline { font-size: 40px; line-height: 1.2; } }
 @media (min-width: 1024px) { .text-headline { font-size: 48px; } }
@@ -329,6 +346,7 @@ img {
   font-size: 20px;
   line-height: 1.2;
   letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
 }
 @media (min-width: 768px) { .text-subheadline { font-size: 28px; } }
 
@@ -339,6 +357,18 @@ img {
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.16px;
+  text-wrap: pretty;
+}
+
+/* Quote — editorial callout / pull-quote (Suisse BP Neue italic) */
+.text-quote {
+  font-family: var(--font-bp-neue), var(--font-sans);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.45;
+  letter-spacing: 0.16px;
+  text-wrap: pretty;
 }
 
 /* UI — nav, buttons, card titles, sidebar (was scattered 15px / 16px) */
@@ -348,6 +378,7 @@ img {
   font-size: 15px;
   line-height: 1.4;
   letter-spacing: 0;
+  text-wrap: pretty;
 }
 
 /* Body small — form fields, footer, supporting copy (was scattered 14px) */
@@ -357,6 +388,7 @@ img {
   font-size: 14px;
   line-height: 1.5;
   letter-spacing: 0.28px;
+  text-wrap: pretty;
 }
 
 /* Label — small uppercase eyebrow / metadata */
@@ -376,6 +408,7 @@ img {
   font-size: 12px;
   line-height: 1.5;
   letter-spacing: 0;
+  text-wrap: pretty;
 }
 
 /* Annotation — footnotes, legends, source notes */
@@ -385,6 +418,7 @@ img {
   font-size: 12px;
   line-height: 1.5;
   letter-spacing: 0;
+  text-wrap: pretty;
 }
 
 /* Code — monospace data/code values (e.g. color values on /brand) */

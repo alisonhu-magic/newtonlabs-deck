@@ -6,8 +6,8 @@ import { type ReactNode } from "react";
 // non-interactive context or pair with an external link wrapper.
 
 type BadgeVariant = "filled" | "outline" | "ghost";
-type BadgeSize = "sm" | "md";
-type BadgeTone = "default" | "success" | "danger";
+type BadgeSize = "sm" | "md" | "lg";
+type BadgeTone = "default" | "success" | "danger" | "accent";
 
 const variantStyles: Record<BadgeVariant, string> = {
   filled: "bg-surface-alt-subtle text-on-surface-muted",
@@ -16,13 +16,15 @@ const variantStyles: Record<BadgeVariant, string> = {
 };
 
 const outlineToneStyles: Record<Exclude<BadgeTone, "default">, string> = {
-  success: "border border-success text-success",
-  danger: "border border-danger text-danger",
+  success: "border border-success text-success bg-success-subtle",
+  danger: "border border-danger text-danger bg-danger-subtle",
+  accent: "border border-accent text-accent bg-accent-subtle",
 };
 
 const sizeStyles: Record<BadgeSize, string> = {
   sm: "px-2 py-1.5 text-xs",
   md: "px-2.5 py-2 text-xs",
+  lg: "px-3 py-2 text-body-sm",
 };
 
 interface BadgeProps {

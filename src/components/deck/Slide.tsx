@@ -21,15 +21,18 @@ export default function Slide({
   index,
   total,
   variant = "content",
+  field = false,
   children,
 }: {
   label?: string;
   index: number;
   total: number;
   variant?: "hero" | "content";
+  field?: boolean;
   children: ReactNode;
 }) {
   const isHero = variant === "hero";
+  const showField = isHero || field;
   const number = String(index + 1).padStart(2, "0");
   const of = String(total).padStart(2, "0");
 
@@ -39,7 +42,7 @@ export default function Slide({
       style={{ width: STAGE_W, height: STAGE_H }}
       aria-label={label ?? deckMeta.title}
     >
-      {isHero && (
+      {showField && (
         <>
           <FieldCanvas config={TITLE_FIELD} className="absolute inset-0 z-0" />
           <div
@@ -52,7 +55,7 @@ export default function Slide({
           />
         </>
       )}
-      <div className="relative z-10 flex flex-col flex-1 min-h-0 px-16 pt-16 pb-16">
+      <div className="relative z-10 flex flex-col flex-1 min-h-0 px-24 pt-16 pb-16">
         <header className="flex items-center justify-between gap-6 shrink-0 h-8 mb-16">
           {label ? (
             <p className="text-label text-on-surface">{label}</p>
@@ -60,7 +63,7 @@ export default function Slide({
             <span />
           )}
           <p className="text-label tabular-nums text-on-surface-subtle">
-            {number} / {of}
+            <span className="text-accent">{number}</span> / {of}
           </p>
         </header>
 

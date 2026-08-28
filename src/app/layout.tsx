@@ -14,6 +14,16 @@ const suisseIntl = localFont({
   display: "swap",
 });
 
+// Suisse BP Neue italic — editorial quote/callout face (.text-quote).
+const suisseBPNeue = localFont({
+  src: [
+    { path: "../fonts/SuisseBPNeue-RegularItalic.otf", weight: "400", style: "italic" },
+    { path: "../fonts/SuisseBPNeue-MediumItalic.otf", weight: "500", style: "italic" },
+  ],
+  variable: "--font-bp-neue",
+  display: "swap",
+});
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -27,7 +37,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${suisseIntl.variable} deck-active h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${suisseIntl.variable} ${suisseBPNeue.variable} deck-active h-full antialiased`}
+    >
       <body className="min-h-full bg-surface font-sans text-on-surface">{children}</body>
     </html>
   );

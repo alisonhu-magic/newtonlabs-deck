@@ -25,7 +25,10 @@ export const goalSlide = {
     { value: "2%", label: "Independent verification" },
   ],
   footnote: "Independent verification is the path to 2%.",
-  image: { src: "", alt: "" },
+  image: {
+    src: "/assets/goal/goal.png",
+    alt: "Onlookers gathered outside a large institutional facility.",
+  },
 } as const;
 
 export const problemSlide = {
@@ -34,13 +37,13 @@ export const problemSlide = {
   cards: [
     {
       iconUrl: "/assets/icons/composable.svg",
-      title: "No shared standard.",
+      title: "No shared standard",
       description:
         "Every vault defines controls its own way, so every review starts from scratch.",
     },
     {
       iconUrl: "/assets/icons/verify.svg",
-      title: "No independent verification.",
+      title: "No independent verification",
       description:
         "Underwriting review at binding, investigation at claim. Between the two, compliance is self-asserted.",
     },
@@ -56,22 +59,31 @@ export const whatNewtonSlide = {
     "Risk controls, enforced before settlement. Continuously verifiable by any carrier.",
   cards: [
     {
-      title: "Controls become enforceable rules.",
+      title: "Controls become enforceable rules",
       description:
         "Written in Rego, referencing the data that decides them: audit registries, oracle configurations, price feed sources, sanctions lists, signing state. Onchain or offchain.",
-      image: { src: "", alt: "" },
+      image: {
+        src: "/assets/what-newton/controls.png",
+        alt: "Rego policy code alongside a transaction intent in the Newton editor.",
+      },
     },
     {
-      title: "An independent network enforces them.",
+      title: "An independent network enforces them",
       description:
         "Rules are evaluated by Newton's operator network rather than the curator or platform. Evaluation completes before the transaction settles; transactions proceed only if the checks pass.",
-      image: { src: "", alt: "" },
+      image: {
+        src: "/assets/what-newton/network.png",
+        alt: "Newton policy evaluation result card showing a compliant status.",
+      },
     },
     {
-      title: "Every evaluation is attested onchain.",
+      title: "Every evaluation is attested onchain",
       description:
         "Each evaluation produces an onchain attestation, and every rule version is a permanent onchain artifact. What was enforced, what was checked, and what changed is public record.",
-      image: { src: "", alt: "" },
+      image: {
+        src: "/assets/what-newton/attestation.png",
+        alt: "Newton protecting a smart contract from a hallucinated agent, unauthorized transaction, and sanctioned wallet.",
+      },
     },
   ],
 } as const;
@@ -117,22 +129,22 @@ export const consortiumSlide = {
     "The consortium writes the rules. Newton proves the rules were in place.",
   cards: [
     {
-      title: "Written standard.",
+      iconUrl: "/assets/icons/scroll.svg",
+      title: "Written standard",
       description:
         "The consortium publishes its control framework: the criteria a coverable vault must meet.",
-      image: { src: "", alt: "" },
     },
     {
-      title: "Enforceable pack.",
+      iconUrl: "/assets/icons/shield-check.svg",
+      title: "Enforceable pack",
       description:
         "Each control becomes an enforceable rule. The rules compose into a versioned onchain pack. Updates propagate to adopting vaults; version history is public.",
-      image: { src: "", alt: "" },
     },
     {
-      title: "Verified adoption.",
+      iconUrl: "/assets/icons/seal-check.svg",
+      title: "Verified adoption",
       description:
         "A carrier quoting a vault checks one thing: the pack is in force and enforced. Attestations show it continuously, for the life of the policy.",
-      image: { src: "", alt: "" },
     },
   ],
   closer: "One pack, adopted across vaults, verifiable by any carrier.",
@@ -184,9 +196,9 @@ export const controlsSlide = {
     },
   ],
   footnote:
-    "Enforced: a failed check blocks settlement. Verified: state attested onchain, visible immediately.",
+    "Enforced: a failed check blocks settlement. Verified: state attested onchain, visible immediately.\nAny control referencing observable data can be written as a rule. When the consortium publishes its framework, the framework becomes the pack.",
   closer:
-    "Any control referencing observable data can be written as a rule. When the consortium publishes its framework, the framework becomes the pack. Rules reference data through the curator's own provider subscriptions. Newton adds no markup and holds no data.",
+    "Rules reference data through the curator's own provider subscriptions. Newton adds no markup and holds no data.",
 } as const;
 
 export const carrierSlide = {
@@ -210,8 +222,8 @@ export const carrierSlide = {
     },
   ],
   image: {
-    src: "/assets/workflow/step-1-light.webp",
-    alt: "Newton transparency dashboard — policy and enforcement record",
+    src: "/assets/workflow/step-4-light.png",
+    alt: "Newton explorer — recent tasks list with per-transaction evaluation results (compliant, non-compliant, pending)",
   },
   caption: "Evaluation record — every decision attested onchain.",
 } as const;
@@ -221,25 +233,25 @@ export const workingModelSlide = {
   headline: "Four roles, one product.",
   cards: [
     {
-      iconUrl: "/assets/icons/composable.svg",
+      iconUrl: "/assets/icons/list-checks.svg",
       title: "The consortium",
       description:
         "Defines the control framework: what a coverable vault meets.",
     },
     {
-      iconUrl: "/assets/icons/enforcement.svg",
+      iconUrl: "/assets/brand/logos/svg/Newton-Symbol-Coal.svg",
       title: "Newton",
       description:
         "Turns the framework into enforceable rules, enforces them before settlement, attests every evaluation onchain.",
     },
     {
-      iconUrl: "/assets/icons/go-to-market.svg",
+      iconUrl: "/assets/brand/logos/webp/aon-wordmark.webp",
       title: "Aon",
       description:
         "Brings the framework to clients and carriers as an Aon-branded offering, powered (and verified) by Newton.",
     },
     {
-      iconUrl: "/assets/icons/security.svg",
+      iconUrl: "/assets/icons/gear-six.svg",
       title: "STG",
       description:
         "Operationalizes: documentation, carrier strategy, the path from framework to bound policies.",
@@ -256,7 +268,7 @@ export const acrossBookSlide = {
     title: "DeFi vaults",
     description:
       "The consortium product: this deck. Wallet controls included: signing quorum and key configuration verified per transaction.",
-    image: "/assets/usecases/defi.webp",
+    image: "/assets/usecases/defi.png",
     policies: ["Signing quorum", "Allocation scope", "Oracle standards"],
   },
   items: [
@@ -264,7 +276,7 @@ export const acrossBookSlide = {
       title: "Treasury & wallet management",
       description:
         "Spend limits, counterparty restrictions, and approval workflows for institutional wallets.",
-      image: "/assets/usecases/ai.webp",
+      image: "/assets/usecases/ai.png",
       crop: { w: "110.25%", h: "110.35%", left: "-6.61%", top: "-10.38%" },
       policies: ["Spend limits", "Approved payees", "Signing quorum"],
     },
@@ -272,13 +284,13 @@ export const acrossBookSlide = {
       title: "Real world assets",
       description:
         "Investor eligibility, jurisdictional and transfer restrictions, enforced at the token level.",
-      image: "/assets/usecases/rwas.webp",
+      image: "/assets/usecases/rwas.png",
       policies: ["Eligibility", "Jurisdiction", "Transfer restrictions"],
     },
     {
       title: "Stablecoins & protocols",
       description: "Issuance and redemption controls.",
-      image: "/assets/usecases/stablecoins.webp",
+      image: "/assets/usecases/stablecoins.png",
       policies: ["Issuance", "Redemption", "Sanctions screening"],
     },
   ],
@@ -290,7 +302,8 @@ export const whoBuildsSlide = {
   label: "Who Builds Newton",
   headline:
     "Built by the team that ran wallet infrastructure for 56M+ accounts.",
-  body: "Newton Labs, formerly Magic Labs. Our wallet infrastructure served 56M+ accounts across consumer and institutional applications, including Polymarket, before Payward, Kraken's parent company, acquired the wallet business. Newton applies the same discipline to enforcement.",
+  body: "Newton Labs, formerly Magic Labs. Our wallet infrastructure served 56M+ accounts across consumer and institutional applications, including Polymarket, before Payward, Kraken's parent company, acquired the wallet business.",
+  bodyClose: "Newton applies the same discipline to enforcement.",
   stat: { value: "$80M+", label: "Raised from top backers" },
   badges: ["SOC 2 Type II", "ISO 27001"],
 } as const;
@@ -302,17 +315,20 @@ export const commercialSlide = {
     "Principle: Aon nets more on a Newton-verified placement than on any placement without one.",
   pillars: [
     {
-      title: "Program.",
+      iconUrl: "/assets/icons/briefcase.svg",
+      title: "Program",
       description:
         "Aon holds the program: $200K annually, creditable in full against share revenue. Covers the consortium pack, provisioning for Aon teams, clients, and carriers, and enablement through STG.",
     },
     {
-      title: "Share.",
+      iconUrl: "/assets/icons/chart-pie-slice.svg",
+      title: "Share",
       description:
         "Newton earns a share of placement economics that steps with verification intensity (ie, curator activity): 17.5% passive, 20% active, 22.5% high-frequency strategies. Set at binding, re-rated at renewal. Aon keeps the rest.",
     },
     {
-      title: "Upside.",
+      iconUrl: "/assets/icons/chart-line-up.svg",
+      title: "Upside",
       description:
         "Carriers pay profit commissions when a book outperforms its pricing. If the verified book runs cleaner, Newton participates in that outperformance alongside Aon. Upside that exists only if verification works.",
     },
@@ -343,28 +359,32 @@ export const pathSlide = {
   headline: "From framework to first bound policy.",
   steps: [
     {
-      number: "01",
-      title: "Now.",
+      number: "1",
+      title: "Now",
       description:
         "Map the consortium’s draft framework to an enforceable pack, in step with the September publication.",
+      iconUrl: "/assets/icons/package.svg",
     },
     {
-      number: "02",
-      title: "September.",
+      number: "2",
+      title: "September",
       description:
         "STG working session: product access, commercial structure, carrier materials.",
+      iconUrl: "/assets/icons/handshake.svg",
     },
     {
-      number: "03",
-      title: "New York event.",
+      number: "3",
+      title: "New York event",
       description:
         "The consortium event. Verification live in front of the carriers in the room.",
+      iconUrl: "/assets/icons/broadcast.svg",
     },
     {
-      number: "04",
-      title: "The pilot.",
+      number: "4",
+      title: "The pilot",
       description:
         "One live vault, quoted three ways: baseline, standards self-enforced, standards verified. The deltas are the proof.",
+      iconUrl: "/assets/icons/flask.svg",
     },
   ],
 } as const;
@@ -394,8 +414,8 @@ export const architectureSlide = {
     },
   ],
   image: {
-    src: "/assets/workflow/step-3-light.webp",
-    alt: "Onchain enforcement — Newton operator network",
+    src: "/assets/workflow/step-3-light.png",
+    alt: "Protection and compliance flow — core entities and policy evaluation across the Newton operator network",
   },
 } as const;
 
@@ -403,12 +423,12 @@ export const integrationSlide = {
   label: "Appendix · Integration",
   headline: "Three paths in. Shield is the recommended path.",
   featured: {
-    title: "Newton Shield, in front of the curator’s wallet — preferred.",
+    title: "Newton Shield, in front of the curator’s wallet.",
     description:
       "Deploy Shield and delegate curator control to it. Every instruction is evaluated before it reaches the vault, so nothing settles unless it passes. Wallet controls like signer quorum become independently verifiable, and rules the wallet cannot express are added in the same step. No change to the vault contract, no redeployment, no new audit — the best path for vaults that are already live.",
     image: {
-      src: "/assets/workflow/step-2-light.webp",
-      alt: "Newton Shield — wallet-front integration",
+      src: "/assets/workflow/step-2-light.png",
+      alt: "Newton demo vault — verified vault page with APY, deposits, and policy details",
     },
   },
   items: [

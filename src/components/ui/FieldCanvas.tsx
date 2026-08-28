@@ -331,6 +331,11 @@ export default function FieldCanvas({ config, className = "" }: FieldCanvasProps
     scene.add(mesh);
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const interactive = mouseMode !== 0;
+    // Whether the field actually moves. A static field (reduced motion or
+    // timeScale 0) with no cursor interaction never changes, so it renders a
+    // single frame instead of pinning the GPU at 60fps.
+    const animated = !reduce && timeScale !== 0;
     const resize = () => {
       const w = el.clientWidth;
       const h = el.clientHeight;
@@ -342,6 +347,8 @@ export default function FieldCanvas({ config, className = "" }: FieldCanvasProps
       );
       // Keep mark cell size ~constant across breakpoints (see responsiveCols).
       uniforms.uCols.value = responsiveCols(w, config.cols);
+      // Static fields don't run a RAF loop, so redraw here to fill the resized buffer.
+      if (!animated && !interactive) renderer.render(scene, cam);
     };
     resize();
     window.addEventListener("resize", resize);
@@ -355,7 +362,6 @@ export default function FieldCanvas({ config, className = "" }: FieldCanvasProps
     let mtx = 0.5;
     let mty = 0.5;
     let mtOn = 0;
-    const interactive = mouseMode !== 0;
     const onMove = (e: PointerEvent) => {
       const r = el.getBoundingClientRect();
       const nx = (e.clientX - r.left) / r.width;
@@ -383,15 +389,37 @@ export default function FieldCanvas({ config, className = "" }: FieldCanvasProps
           ? config.reducedTime
           : ((now - t0) / 1000) * timeScale * 2;
       renderer.render(scene, cam);
-      raf = requestAnimationFrame(tick);
+      // Only keep looping when there's motion to draw — an animated field or
+      // live cursor easing. A fully static field stops after one frame.
+      if (animated || interactive) raf = requestAnimationFrame(tick);
     };
     tick(t0);
     requestAnimationFrame(() => {
       if (wrapEl) wrapEl.style.opacity = "1";
     });
 
+    // A static field (no motion, no cursor) renders a single frame at mount. If
+    // the canvas is off-screen at that moment — e.g. a later slide in the
+    // horizontally-scrolled deck — that frame lands in an empty buffer and, with
+    // no RAF loop, never repaints (the opaque canvas then shows as black). Redraw
+    // whenever the canvas scrolls into view.
+    let io: IntersectionObserver | null = null;
+    if (!animated && !interactive && typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            resize();
+            renderer.render(scene, cam);
+          }
+        },
+        { threshold: 0.01 }
+      );
+      io.observe(el);
+    }
+
     return () => {
       cancelAnimationFrame(raf);
+      io?.disconnect();
       window.removeEventListener("resize", resize);
       if (interactive) window.removeEventListener("pointermove", onMove);
       renderer.dispose();
