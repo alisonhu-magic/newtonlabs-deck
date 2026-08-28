@@ -1,0 +1,386 @@
+Suisse Int'l — Font License
+============================
+
+The font files in this directory (SuisseIntl-*.woff2) are PROPRIETARY font software
+owned by Swiss Typefaces Sàrl (https://www.swisstypefaces.com). They are NOT open source.
+
+Web compliance (per EULA C.3 and Swiss Typefaces specifications):
+  - Self-host only; serve via @font-face (next/font/local). Do NOT use third-party
+    font hosting services.
+  - Use only the provided .woff2 files for the website; keep the original filenames
+    (the Font Software must not be renamed — see D.1).
+  - The domain owner and the company represented by the website must hold a valid
+    license (Newton / Magic Labs, Inc.).
+
+  License type : Font Software End User License Agreement (EULA) — Company license
+  Licensee     : Magic Labs, Inc. (Newton), 548 Market St., PMB 31387, San Francisco, CA 94104, US
+  EULA version : 2025-EULA-Company_V03
+  Order date   : 21 Jul 2026
+  Authoritative document: ./SwissTypefaces-EULA.pdf
+
+Web embedding is permitted for this website under EULA section C.3, provided the
+owner of the domain and the company represented by the website hold a valid license.
+
+DO NOT:
+  - redistribute, sublicense, sell, lend, lease, or otherwise transfer the font files;
+  - provide the font files to third parties (agencies, freelancers, contractors) without
+    the required Sharing Extension and a full copy of this EULA (see sections D and E);
+  - modify, rename, or reverse-engineer the font software (subsetting/format conversion
+    for webfonts is allowed per C.3, but voids all warranties per G.5).
+
+The full EULA text follows below. In case of any conflict, the signed PDF
+(SwissTypefaces-EULA.pdf) is the authoritative version.
+
+--------------------------------------------------------------------------------
+Font Software End User License Agreement (EULA)
+Swiss Typefaces Sàrl / Quai Perdonnet 19, 1800 Vevey, Switzerland
+contact@swisstypefaces.com / www.swisstypefaces.com / CHE-113.233.962 TVA
+File version: 2025-EULA-Company_V03
+--------------------------------------------------------------------------------
+
+This End User License Agreement (EULA) between the Buyer and Swiss Typefaces Sàrl
+("Swiss Typefaces") governs the use of the Font Software and the Typeface. By
+purchasing, downloading, installing or using the Font Software, you acknowledge
+that you have read, understood and agreed to be bound by the terms and conditions
+of this EULA.
+
+A. DEFINITIONS
+
+A.1 TYPEFACE / FONT SOFTWARE / ORDER
+For the purposes of this EULA, "Typeface" shall mean the typographic characters,
+"Font Software" shall mean the software as specified in the Order which, when used
+with the appropriate hardware and software, allows for the display of the Typeface,
+and "Order" shall mean the order placed with Swiss Typefaces when acquiring the
+license to use the Typeface and Font Software.
+
+A.2 BUYER / LICENSEE
+For the purposes of this EULA, "Buyer" shall mean the legal entity placing the Order
+with Swiss Typefaces, and "Licensee" shall mean (i) the Buyer, if the license is
+purchased for the Buyer's own benefit (which will be assumed unless explicitly stated
+otherwise in the Order), and (ii) the respective third-party legal entity, if the Buyer
+procures the license for the benefit of a third-party legal entity (e.g., an agency
+procuring the license for the benefit of a third-party client; specific rules apply,
+see E.3). If the Buyer is procuring the license for the benefit of a third-party legal
+entity, the Buyer must name the third party as the Licensee when placing the Order and
+provide accurate and complete Licensee information; otherwise, the Buyer will be
+considered the Licensee. In case of doubt, the Buyer shall contact Swiss Typefaces
+before placing the Order.
+
+A.3 COMPANY
+This EULA "Company" applies only if the Licensee is a legal entity. By selecting the
+license option "Company" when placing the Order, the Buyer confirms that the Licensee
+is a legal entity. If the Licensee is a natural person (individual), the Buyer must
+select the license option "Personal", and the terms of the EULA "Personal" will apply.
+If there is any uncertainty, the Buyer shall contact Swiss Typefaces before placing
+the Order.
+
+B. SCOPE OF THE LICENSE
+
+B.1 Subject to the full payment of the fees and to the compliance with the terms and
+conditions of this EULA, Swiss Typefaces grants the Licensee a non-exclusive license
+to use the Font Software and Typeface as specified in this EULA.
+
+B.2 The license permits the use of the Font Software and Typeface by one single legal
+entity. Use of the Font Software and Typeface by another, even affiliated legal entity
+requires a separate license (exceptions apply, see E.2 and E.3). The license is valid
+for as long as the Licensee has less or up to the total of employees ("Employees")
+specified in the Order. As soon as this amount is exceeded, the Licensee (the Buyer in
+case of E.3) must contact Swiss Typefaces and upgrade the licensing plan within 30
+(thirty) days.
+
+B.3 The use of the Font Software and Typeface is subject to the upfront payment of the
+fees as specified in the Order. If the payment is canceled or not fully received by
+Swiss Typefaces, Swiss Typefaces has the right to terminate this EULA. The fees are
+non-refundable. In particular, no refund of the fees will occur if the number of
+Employees as specified in the Order is eventually reduced or if the Licensee decides to
+discontinue, in whole or in part, the use of the Font Software or Typeface.
+
+B.4 Swiss Typefaces provides the Font Software in the standard OpenType/CFF (.otf),
+OpenType/TTF (.ttf) and WOFF2 (.woff2) formats.
+
+C. PERMITTED USE
+
+C.1 INSTALLATION ON WORKSTATIONS AND UPLOAD ON SERVERS, CMS, DAAS, SAAS
+Solely for the purposes of using the Font Software in accordance with C.2 to C.4, the
+Licensee has the right to:
+  - install and use the Font Software on an unlimited number of workstations and output
+    devices, provided that these are used and operated by the Licensee's Employees only
+    (exceptions apply, see E.2);
+  - install or upload the Font Software on a file server to be used on a Local Area
+    Network (LAN), on an online server (Internet), in Content Management Systems (CMS),
+    or in Desktop-as-a-Service (DaaS) environments, provided that the access to and use
+    of the Font Software is secured and limited to the Licensee's Employees (exceptions
+    apply, see E.2); and
+  - upload the Font Software on an online collaborative tool to be used by a team of
+    people or a Software-as-a-Service (SaaS) platform, provided that the access to and
+    use of the Font Software is secured and limited to the Licensee's Employees
+    (exceptions apply, see E.2).
+
+C.2 ASSETS NOT REQUIRING THE EMBEDDING OF THE FONT SOFTWARE
+(PRINTS, BOOKS, PHYSICAL PRODUCTS, SOCIAL MEDIA, VIDEOS)
+The Licensee has the right to use the Font Software to create an unlimited number of
+physical and digital assets for the Licensee's business, or for another natural person
+or legal entity covered by a valid license to use the Font Software and Typeface, which
+are not embedding the Font Software. This includes the right to print these assets
+(e.g., printed text media such as books, periodicals, brochures, correspondence),
+including on physical products (e.g., packaging, clothing, merchandise), publish them
+online (e.g., social media posts), and use them in videos. Specific rules apply for
+logos (see C.4).
+
+C.3 ASSETS REQUIRING THE EMBEDDING OF THE FONT SOFTWARE
+(WEBSITES, APPS, ELECTRONIC PUBLICATIONS, VIDEO GAMES)
+The Licensee has the right to embed the Font Software for the purpose of displaying text
+and characters in an unlimited number of tools or assets used and owned or controlled by
+the Licensee or by another natural person or legal entity covered by a valid license to
+use the Font Software and Typeface (e.g., websites, apps, electronic publications,
+documents, presentations, slideshows, video games), under the following conditions:
+  - The Font Software and Typeface are embedded in a secure mode, allowing text to be
+    viewed and printed. The Licensee may permit third parties to use the Font Software
+    and Typeface within a tool or asset solely as part of the user interface (e.g.,
+    typing text in a search bar of a website or creating a player name in a video game).
+    Third parties must not be able to otherwise use the Font Software or Typeface nor any
+    assets generated or edited using the Font Software or Typeface. In case of doubt,
+    contact Swiss Typefaces.
+  - In case of a website, the owner of the domain and the company represented by the
+    website have a valid license to use the Font Software and Typeface.
+  - The Font Software may be converted to obtain webfonts in formats not provided by
+    Swiss Typefaces (see B.4) and subsetted to obtain specific reduced character sets.
+    If the Font Software is converted or subsetted, all warranties will be excluded
+    (see G.5).
+
+C.4 USAGE IN LOGOS
+The Licensee has the right to use the Font Software to create a logo (including a
+trademark or slogan) for the Licensee's business or for another natural person or legal
+entity covered by a valid license to use the Font Software and Typeface, under the
+following conditions:
+  - A valid license must be in place for the entire period of the use of the logo.
+  - Design modifications for a logo are only allowed when the Typeface is vectorized
+    and/or converted to outline and must be executed by the Licensee's Employees or a
+    third party covered by a valid license (for third-party contractors, see E.2).
+  - The Licensee is not allowed to generate a custom Font Software based on the retail
+    Font Software or Typeface, and only the vectorized characters can be modified and
+    used in the logos. If interested in a custom Font Software, contact Swiss Typefaces.
+  - The intellectual property rights in the Font Software and the Typeface remain the
+    sole and exclusive property of Swiss Typefaces.
+
+D. RESTRICTED USE
+
+D.1 Any use of the Font Software or Typeface not expressly permitted by this EULA is
+strictly forbidden. In particular:
+  - The Font Software and Typeface shall not be sublicensed, sold, lent, leased, or
+    otherwise transferred.
+  - The Font Software shall not be provided to or used or distributed in any way that
+    allows access by third parties (exceptions apply, see E.2 and E.3).
+  - The Font Software shall not be converted, modified, subsetted or renamed
+    (exceptions apply for conversion and subsetting, see C.3).
+  - The Font Software shall not be reverse engineered, decompiled, or disassembled
+    (except where authorized by applicable law).
+  - The Font Software and Typeface shall not be modified or altered for any purpose.
+    In particular, they shall not be used to create a derivative or modified product or
+    design, including creating characters for alphabets, styles and languages not
+    covered by the Font Software or creating a custom version of the Typeface or Font
+    Software, even if vectorized or converted to outlines (exceptions apply for logos,
+    see C.4). If interested in a custom Font Software or Typeface, contact Swiss Typefaces.
+  - The Font Software shall not be offered as part of, any graphic, web design, video or
+    text editing tool or service, office and design software and services, themes and
+    templates, or font libraries.
+
+D.2 In case of doubt about whether a particular use of the Typeface or Font Software is
+permitted, the Licensee (the Buyer in case of E.3) shall contact Swiss Typefaces.
+
+E. USE BY THIRD PARTIES
+
+E.1 PRINCIPLE
+The Licensee (and the Buyer in case of E.3) is not allowed to provide the Font Software
+to any third party (including affiliates, subsidiaries, franchisees, service or
+production companies, design agencies, freelancers, etc.) or permit any such third party
+the use of the Font Software or Typeface. Any such third party is required to purchase
+its own, separate license. The only exceptions are set out in E.2 and E.3. If interested
+in licensing for the benefit of a group of companies, contact Swiss Typefaces for a
+personalized offer.
+
+E.2 SERVICE PROVIDERS (CONTRACTORS, PRE-PRESS FACILITIES AND CODING)
+Contractors: The Licensee (and/or the Buyer in case of E.3) may, for a limited period of
+time, provide a copy of the Font Software to third-party service providers contracted to
+carry out work for the Licensee (each a "Contractor"), provided that the conditions below
+(General Requirements) are met, the work carried out by the Contractor is permitted
+according to C.2 to C.4, and the option to share the Font Software (the "Sharing
+Extension") has been purchased when placing the Order.
+Pre-press facilities and coding: The Licensee (and/or the Buyer in case of E.3) may, for
+a limited period of time, provide a copy of the Font Software to third-party operators
+contracted to prepare for printing and printing documents, or to code a website or an
+app for the Licensee (each an "Operator"), provided that the conditions below (General
+Requirements) are met and that any editorial or design work by the Operator requires a
+separate license by the Operator, unless the Sharing Extension has been purchased when
+placing the Order.
+General Requirements: In addition to the conditions set out above, any permitted
+provision and use of the Font Software and Typeface to/by a third-party service provider
+is subject to the following conditions:
+  - The service provider has been contracted to provide the services set out above.
+  - The service provider uses the Font Software and Typeface exclusively for the
+    contracted services and deletes the Font Software upon completion of the services.
+  - The service provider is not affiliated with or a subsidiary or franchisee of the
+    Licensee. Any affiliate, subsidiary and franchisee is required to purchase its own,
+    separate license (see E.1).
+  - The Licensee (and/or the Buyer in case of E.3) provides the third party with a full
+    copy of this EULA before providing the Font Software.
+  - The service provider complies with the terms and conditions of this EULA. The
+    Licensee (the Buyer in case of E.3) is fully responsible for the acts and omissions
+    of the service provider, and any such act or omission that would constitute a breach
+    of this EULA if done by the Licensee will be considered a breach by the Licensee (the
+    Buyer in case of E.3).
+  - The Licensee (the Buyer in case of E.3) is and remains Swiss Typefaces' point of
+    contact for any questions and support.
+Purchase of Sharing Extension: If third-party services require a Sharing Extension, but
+the Sharing Extension has not been purchased when placing the Order, the Licensee (the
+Buyer in case of E.3) shall contact Swiss Typefaces.
+
+E.3 LICENSING FOR THE BENEFIT OF A THIRD-PARTY CLIENT
+If the Buyer sources and procures the license for the benefit of a third-party client,
+the client will be considered the Licensee for the purposes of this EULA (see A.2). The
+Buyer may provide the Font Software to the Licensee, subject to the following conditions:
+  - The contractual relationship is formed between Swiss Typefaces and the Buyer, and not
+    between Swiss Typefaces and the Licensee. The Licensee shall not have any direct
+    claims against Swiss Typefaces based on this EULA (exceptions apply, see H.1).
+  - The Buyer communicates to Swiss Typefaces the comprehensive Licensee information,
+    including number of Employees of the Licensee, when placing the Order.
+  - The Buyer provides the Licensee with a full copy of this EULA before providing the
+    Font Software.
+  - The Buyer's right to use of the Font Software is restricted. The Buyer may only use
+    the Font Software in a manner permitted to a third-party service provider pursuant to
+    E.2. Use of the Font Software or Typeface for any other purposes or for any other
+    client requires a separate license.
+  - The Licensee is entitled to use the Font Software and Typeface in accordance with and
+    complies with the terms and conditions of this EULA. The Buyer is fully responsible
+    for the acts and omissions of the Licensee, and any such act or omission that
+    constitutes a breach of this EULA will be considered a breach by the Buyer.
+  - The Buyer is and remains Swiss Typefaces' point of contact for any questions and
+    support.
+
+F. INTELLECTUAL PROPERTY RIGHTS
+
+F.1 All rights in and to the Font Software and the Typeface, in particular all
+intellectual property rights such as copyrights, belong to Swiss Typefaces. The Font
+Software's structure, organization, and code are valuable trade secrets of Swiss
+Typefaces.
+
+F.2 No transfer of ownership of any intellectual property rights will occur under this
+EULA.
+
+F.3 Except for the rights to use the Font Software and Typeface as granted by this EULA,
+all other rights are owned and retained by Swiss Typefaces. Swiss Typefaces has the right
+to disclose that it is the designer of the Typeface used by the Licensee, and to showcase
+its usage, including naming the Licensee (and/or the Buyer in case of E.3) as well as
+assisting third parties such as creative agencies or design studios.
+
+G. LIMITED WARRANTY AND LIABILITY
+
+G.1 The Font Software is tested, valid, and produced with the highest standards of
+performance and usability by professional font engineering experts.
+
+G.2 For a period of 90 (ninety) days after the Order is placed, Swiss Typefaces
+represents and warrants that the Font Software provided essentially complies with the
+specifications described on Swiss Typefaces' website at the date of the Order. The sole
+remedy in case of a defective Font Software is, at Swiss Typefaces' choice, the repair or
+replacement of the Font Software or refund of the license fee. To be entitled to any
+remedy, the Licensee (the Buyer in case of E.3) must inform Swiss Typefaces of the defect
+immediately upon its discovery.
+
+G.3 Swiss Typefaces represents and warrants that it has all rights necessary to grant the
+licenses as provided in this EULA, the Font Software does not infringe or misappropriate
+the intellectual property rights of any third party, and that it has made commercially
+reasonable efforts to ensure that the Font Software is free from viruses or other
+malicious code.
+
+G.4 All other representations and warranties, express or implied, are excluded and
+disclaimed, including without limitation for fitness for any particular purpose,
+merchantability, the performance and result that may be obtained by using the Font
+Software, compatibility with other software, or for using the Font Software with
+third-party font hosting services or font management applications.
+
+G.5 If the Font Software is converted, manipulated, subsetted or modified, or used in
+breach of this EULA, any warranty, remedy, and indemnification is excluded.
+
+H. INDEMNIFICATION AND LIABILITY
+
+H.1 In case of a breach of the representations and warranties set forth in G.3, Swiss
+Typefaces will defend the Licensee (and the Buyer in case of E.3) (including its/their
+managers, directors, employees and agents) against any third-party claims and hold the
+Licensee (and the Buyer in case of E.3) free from any direct damages, claims or indemnity
+and costs (including reasonable attorney's fees and judicial costs), incurred in this
+context and be held solely liable for any such direct damages, claims or indemnity and
+costs.
+
+H.2 In case of a breach of the obligations arising from this EULA, the Licensee (the
+Buyer in case of E.3) will defend the Swiss Typefaces (including its managers, directors,
+employees and agents) against any third-party claims and hold Swiss Typefaces free from
+any damages, claims or indemnity and costs (including reasonable attorney's fees and
+judicial costs), whether direct or indirect, incurred in this context and be held solely
+liable for any such damages, claims or indemnity and costs.
+
+H.3 Any liability of Swiss Typefaces is excluded to the maximum extent permitted by law.
+In particular, save in case of willful intent or gross negligence, Swiss Typefaces will
+not be liable for any direct, indirect, incidental, punitive, or special damages,
+including any lost profit, lost data, or lost savings.
+
+H.4 If the Font Software or Typeface is used without a valid or adequate license or in a
+manner not permitted by this EULA (see, in particular, D), the Licensee (the Buyer in
+case of E.3) shall pay Swiss Typefaces a retroactive license fee for the illegitimate
+use. Such retroactive license fee shall be calculated in accordance with the then-current
+licensing and service fees of Swiss Typefaces, plus a surcharge of 100% of the overall
+license and service fee due to Swiss Typefaces, plus a reimbursement for Swiss Typefaces'
+expenditure, time and effort as well as legal expenses. The assertion of further claims,
+including damage claims and specific performance claims, remains reserved. The reversal of
+the burden of proof according to art. 161 para. 2 CO shall not apply.
+
+I. TERMINATION
+
+I.1 This EULA is entered into for an indefinite period of time.
+
+I.2 Swiss Typefaces is entitled to terminate this EULA with immediate effect (i) if the
+Licensee (and/or the Buyer in case of E.3) is in breach of the terms of this EULA, or if
+such breach is attributable to the Licensee (and/or the Buyer in case of E.3) according
+to E, and such breach has not been cured, including payment of any license and service
+fees due according to H.4, within 30 calendar days of notice by Swiss Typefaces to the
+Licensee (the Buyer in case of E.3), or (ii) in case of bankruptcy or similar proceedings
+against the Licensee.
+
+I.3 Immediately upon termination, the Font Software must be deleted and all further use of
+the Font Software and the Typeface must be ceased, and the Licensee (the Buyer in case of
+E.3) will cause all third parties to which the Font Software has been provided to do the
+same. Swiss Typefaces may ask the Licensee (the Buyer in case of E.3) to certify in
+writing that all parties with access to the Font Software have complied with this
+obligation. Termination of this EULA will not entitle to a refund of any payments made to
+Swiss Typefaces.
+
+J. FINAL PROVISIONS
+
+J.1 If any provision of this EULA is held invalid or inapplicable for any reason, it will
+not affect the other provisions of this EULA, which shall remain valid according to its
+terms. Any provision held invalid or inapplicable shall be replaced by a valid provision
+coming closest to the commercial purpose of the replaced provision.
+
+J.2 No amendment or modification of this EULA shall be valid unless in writing and signed
+by both parties.
+
+J.3 No delay or omission in exercising any right hereunder shall operate as a waiver of
+such right or any other right. A waiver on any one occasion shall not be construed as a
+waiver of any right or remedy on any future occasion.
+
+J.4 Without prior consent of Swiss Typefaces, the Licensee (the Buyer in case of E.3)
+does not have the right to, in whole or in part, assign, transfer, or otherwise dispose
+of this EULA or any right, claim or obligation under it.
+
+J.5 This EULA shall be governed by and construed in accordance with the substantive laws
+of Switzerland, to the exclusion of the CISG.
+
+J.6 Any dispute arising out of or in connection with this EULA shall be submitted to the
+exclusive jurisdiction of the courts of Vevey, Switzerland. These courts shall also have
+jurisdiction over non-contractual claims of a party in connection with this agreement.
+However, a party may also bring such non-contractual claims before any other court having
+jurisdiction over those claims.
+
+--------------------------------------------------------------------------------
+© Swiss Typefaces Sàrl. All rights reserved. Licensed to Magic Labs, Inc.
+Authoritative signed copy: ./SwissTypefaces-EULA.pdf
+--------------------------------------------------------------------------------

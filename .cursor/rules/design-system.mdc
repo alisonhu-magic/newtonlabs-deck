@@ -1,0 +1,89 @@
+---
+description: Newton landing page design system — tokens, theming, components, Figma workflow
+alwaysApply: true
+---
+
+# Newton Design System
+
+## Color Tokens
+
+Always use semantic tokens, never raw hex values from Figma.
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `surface` | bone-50 `#FBFCFE` | Page background |
+| `on-surface` | coal-950 `#0E0E0F` | Primary text |
+| `on-surface-muted` | coal-alpha-60 | Secondary text |
+| `on-surface-subtle` | coal-alpha-40 | Tertiary text |
+| `surface-alt` | coal-alpha-10 | Card backgrounds |
+| `accent` | blue-500 `#3D6FE8` | Buttons, CTAs, links |
+| `on-accent` | bone-50 | Text/icons on accent |
+| `accent-hover` | blue-600 `#3764D1` | Accent hover state |
+| `accent-active-text` | bone-alpha-60 | Press-state text on accent |
+| `danger` | `#AD2B03` | Form validation errors; receipt "Blocked" state |
+| `success` | `#0B6E4F` | Compliance receipt "Approved" state only |
+
+Usage: `bg-surface`, `text-on-surface`, `bg-accent`, `text-on-accent`, `text-accent-active-text`.
+
+## Theming
+
+- Single light theme. `:root` in `globals.css` holds the raw palette plus the
+  semantic tokens; there is no dark theme and no `data-theme` toggle.
+- Still use semantic tokens (never raw hex), so a future theme could be layered
+  in without touching components.
+
+## Typography
+
+- `font-sans` (Suisse BP Int'l) — all UI text, body, buttons, and display/hero headings
+- `font-code` (system monospace) — data/code values (e.g. color codes on `/brand`)
+- Prefer the semantic type utilities in `globals.css` (`.text-display`,
+  `.text-headline`, `.text-body`, `.text-ui`, `.text-label`, …) over ad-hoc
+  `text-[…]`/`leading-[…]`/`tracking-[…]`.
+
+## Motion and Transitions
+
+- Easing: `ease-[var(--ease-newton)]` = `cubic-bezier(0.22, 1, 0.36, 1)`
+- Duration: `duration-[var(--duration-interaction)]` = `300ms`
+- Component animations: use `motion/react` (Framer Motion) with the same easing `[0.22, 1, 0.36, 1]`
+- Never use spring physics or bounce — always use the Newton easing
+
+## Interaction States
+
+- Default: base styling
+- Hover: `hover:` / `group-hover:` — typically underline or opacity change
+- Press: `active:` / `group-active:` — use `text-accent-active-text` (60% opacity)
+- Mobile: default to hover-state appearance (e.g. `underline md:no-underline md:group-hover:underline`)
+- Wrap hover-only visual effects in `@media (hover: hover)` when needed
+
+## Focus
+
+- Sitewide `:focus-visible` ring is defined in `globals.css` (not per-component):
+  2px solid `accent`, 2px offset (`--focus-ring-*` tokens).
+- Interactive focus targets get `border-radius: var(--radius-md)` by default so
+  the outline is rounded; prefer also setting `rounded-md` (or larger) on the
+  element itself. Explicit `rounded-*` utilities still win over the base rule.
+- On `bg-accent` surfaces the ring color flips to `on-accent`.
+- Do not add bare `outline-none` on interactive controls — it suppresses the
+  base ring. `outline-none` is only OK on non-interactive programmatic focus
+  targets (e.g. a success heading with `tabIndex={-1}`).
+- Mouse clicks must not leave a sticky ring (`:focus-visible` only).
+
+## Figma Workflow
+
+1. Use Figma Desktop MCP tools: `get_design_context` (code + metadata), `get_screenshot` (visual)
+2. Always call `get_screenshot` after `get_design_context` for visual reference
+3. Convert Figma Tailwind output to project semantic tokens — map `bg-[#fbfcfe]` to `bg-surface`, `text-[#0e0e0f]` to `text-on-surface`, `bg-[#3d6fe8]` to `bg-accent`, etc.
+4. Extract node ID from Figma URLs: `?node-id=1-2` becomes `1:2`
+
+## Component Structure
+
+- **Sections** (`src/components/sections/`): full-width page sections — `HeroSection`, `Header`, `AnnouncementBanner`, etc.
+- **UI** (`src/components/ui/`): reusable primitives — `NavButton`, `ExternalLink`, `FeatureCard`, etc.
+- **Config**: all content is driven by `src/app/site.config.ts` — text, links, images
+- Client components use `"use client"` directive at the top
+
+## Tailwind v4
+
+- No `tailwind.config.js` — tokens are defined via `@theme` blocks in `src/app/globals.css`
+- Arbitrary values reference CSS vars: `duration-[var(--duration-interaction)]`, `ease-[var(--ease-newton)]`
+- Utility CSS classes live in `globals.css` (e.g. `.theme-icon` logo/icon tint, `.blend-hero`, the `.text-*` type utilities)

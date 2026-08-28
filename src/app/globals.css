@@ -1,0 +1,449 @@
+@import "tailwindcss";
+
+/* ── Raw palette ─────────────────────────────────────────── */
+/*
+ * NewtonLabs brand (Figma: NewtonLabs-brand / Color tokens).
+ * "Bone" retains its var name but now maps to the brand's cool
+ * near-white (White #FBFCFE / Mono-50 #F7F7F9). "Coal" maps to
+ * Mono-900 #0E0E0F (the Newton black). Blue is the single product
+ * accent ramp (Blue-500 base, Blue-600 hover).
+ */
+:root {
+  /* Bone (light family) — brand cool near-white */
+  --bone-50: #FBFCFE;
+  --bone-100: #F7F7F9;
+  --bone-alpha-60: rgba(251, 252, 254, 0.6);
+  --bone-alpha-40: rgba(251, 252, 254, 0.4);
+  --bone-alpha-20: rgba(251, 252, 254, 0.2);
+  --bone-alpha-10: rgba(251, 252, 254, 0.1);
+  --bone-alpha-08: rgba(251, 252, 254, 0.08);
+  --bone-alpha-05: rgba(251, 252, 254, 0.05);
+  --bone-50-alpha-60: rgba(251, 252, 254, 0.6);
+  /* Surface at zero alpha — feathered scrims over the surface-colored hero
+     field fade to the same hue so no dark halo appears at the midpoint. */
+  --bone-50-alpha-0: rgba(251, 252, 254, 0);
+
+  /* Coal (dark family) — brand Mono-900 (Newton black) */
+  --coal-950: #0E0E0F;
+  --coal-alpha-80: rgba(14, 14, 15, 0.8);
+  --coal-alpha-60: rgba(14, 14, 15, 0.6);
+  --coal-alpha-40: rgba(14, 14, 15, 0.4);
+  --coal-alpha-20: rgba(14, 14, 15, 0.2);
+  --coal-alpha-10: rgba(14, 14, 15, 0.1);
+  --coal-alpha-08: rgba(14, 14, 15, 0.08);
+  --coal-alpha-05: rgba(14, 14, 15, 0.05);
+  --coal-alpha-04: rgba(14, 14, 15, 0.04);
+
+  /* Blue — single product accent (brand ramp, 50 → 800, base #3D6FE8) */
+  --blue-50: #ECF1FD;
+  --blue-100: #D8E2FB;
+  --blue-200: #A8BEF5;
+  --blue-500: #3D6FE8;
+  --blue-600: #3764D1;
+  --blue-800: #234087;
+  /* Accent at zero alpha — for feathered scrims/gradients over the accent
+     field (fades to the same hue so no dark halo appears at the midpoint). */
+  --blue-500-alpha-0: rgba(61, 111, 232, 0);
+}
+
+/* ── Tailwind theme tokens ───────────────────────────────── */
+@theme inline {
+  --font-sans: var(--font-suisse-intl), system-ui, sans-serif;
+  /* Code / data values (color values on /brand, future code samples). */
+  --font-code: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+  --ease-newton: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-interaction: 300ms;
+  /* Count-up / number-roll animations (stat figures). Longer than the
+     interaction duration so digits read as they roll. */
+  --duration-count: 1600ms;
+}
+
+/* Semantic color tokens — light is the only theme */
+@theme {
+  --color-surface: var(--bone-50);
+  --color-on-surface: var(--coal-950);
+  --color-on-surface-muted: var(--coal-alpha-60);
+  --color-on-surface-subtle: var(--coal-alpha-40);
+  --color-surface-alt: var(--coal-alpha-10);
+  --color-surface-alt-hover: var(--coal-alpha-08);
+  --color-surface-alt-strong: var(--coal-alpha-20);
+  --color-surface-alt-subtle: var(--coal-alpha-05);
+  /* Accent — brand blue (single product accent) */
+  --color-accent: var(--blue-500);
+  --color-on-accent: var(--bone-50);
+  --color-accent-hover: var(--blue-600);
+  --color-accent-active-text: var(--bone-alpha-60);
+  /* Form validation — Ruby 90 */
+  --color-danger: #ad2b03;
+}
+
+/* ── Corner radius scale ─────────────────────────────────── */
+/*
+ * Three-step scale built around two fixed anchors: the header floating
+ * pill (16px — largest elevated chrome) and the image/asset frame
+ * (14px — content surfaces). Controls and cards sit one step down at
+ * 12px. Nothing ships tighter than 12px — there is no smaller token.
+ *
+ * These override Tailwind's default rounded-md/lg/xl, so `rounded-md`
+ * = 12px, `rounded-lg` = 14px, `rounded-xl` = 16px. Nested inner corners
+ * are computed inline as `outer − inset` (e.g. AssetFrame 14 − 6px
+ * border = 8px), not tokenized.
+ */
+@theme {
+  --radius-md: 12px; /* controls, buttons, inputs, nav items, cards */
+  --radius-lg: 14px; /* content surfaces — anchor: image/asset frame */
+  --radius-xl: 16px; /* largest floating chrome — anchor: header pill */
+}
+
+/* ── Theme variables (light — the only theme) ────────────── */
+:root {
+  /* Hero */
+  --th-hero-gradient-mid: var(--bone-50-alpha-60);
+  --th-hero-gradient-edge: var(--bone-50);
+  --th-hero-center-color: var(--coal-950);
+  --th-hero-overlay-opacity: 0.6;
+  --th-blend-hero: normal;
+
+  /* Header */
+  --th-header-blur: var(--bone-50-alpha-60);
+
+  /* Filters */
+  --th-logo-filter: brightness(0);
+  --th-backed-logo-filter: brightness(0);
+  --th-diagram-filter: invert(1);
+  --th-icon-hover-filter: brightness(0) invert(1);
+
+  /* Ecosystem hex grid overlay */
+  --th-hex-overlay:
+    linear-gradient(270deg, var(--bone-50) 0%, transparent 49.5%, var(--bone-50) 100%),
+    linear-gradient(180deg, var(--bone-50) 0%, transparent 50%, var(--bone-50) 100%);
+}
+
+/* ── Fixed header stack ──────────────────────────────────── */
+/*
+ * TopBar is position:fixed; --topbar-height is measured at runtime
+ * (ResizeObserver in TopBar.tsx). Fallbacks cover first paint before JS.
+ *
+ * Mobile nav: h-14 (56px). Desktop nav: lg:h-20 (80px).
+ * Announcement banner: ~48px when visible (--banner-height, measured).
+ */
+:root {
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --header-nav-height: 3.5rem;
+  --banner-height: 0px;
+  --topbar-height: calc(
+    var(--safe-area-inset-top) + var(--banner-height) + var(--header-nav-height)
+  );
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-nav-height: 5rem;
+  }
+}
+
+html {
+  scroll-padding-top: var(--topbar-height);
+}
+
+.scroll-mt-topbar {
+  scroll-margin-top: var(--topbar-height);
+}
+
+/* ── Base styles ─────────────────────────────────────────── */
+:root {
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--color-accent);
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-sans);
+}
+
+/* Keep images non-draggable (logos / hero assets) without blocking text selection. */
+img {
+  -webkit-user-drag: none;
+}
+
+/* Keyboard focus — :focus-visible only so mouse clicks leave no sticky ring.
+   On accent (blue) surfaces the ring flips to on-accent for contrast. */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Outline follows border-radius. :where() keeps specificity low so explicit
+   rounded-* utilities (e.g. card hit-areas) still win when present. */
+:where(
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [role="menuitem"]:focus-visible,
+  [role="button"]:focus-visible,
+  [role="tab"]:focus-visible
+) {
+  border-radius: var(--radius-md);
+}
+
+.bg-accent :focus-visible {
+  --focus-ring-color: var(--color-on-accent);
+}
+
+/* ── Utilities ───────────────────────────────────────────── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hero blend mode */
+.blend-hero { mix-blend-mode: var(--th-blend-hero); }
+
+/* Logos / icons render in the on-surface tint (coal via brightness(0)) */
+.theme-icon  { filter: var(--th-logo-filter); }
+.backed-logo {
+  opacity: 0.4;
+  filter: brightness(0);
+  transition: opacity var(--duration-interaction) var(--ease-newton);
+}
+@media (hover: hover) {
+  .backed-logo:hover {
+    opacity: 1;
+  }
+}
+/* Trusted-by logos render flat in the on-surface tint. SVG sources are
+   filled with bone-50 directly, so they invert via `brightness(0)` to
+   land at ≈ coal-950. */
+.trusted-logo {
+  filter: brightness(0);
+}
+
+/* Brand card outlines (coal-A10 → A20 hover). */
+.brand-card-outline {
+  border: 1px solid var(--coal-alpha-10);
+  transition: border-color var(--duration-interaction) var(--ease-newton);
+}
+.brand-card-outline:hover { border-color: var(--coal-alpha-20); }
+
+.brand-card-outline-light {
+  border: 1px solid var(--coal-alpha-10);
+  transition: border-color var(--duration-interaction) var(--ease-newton);
+}
+.brand-card-outline-light:hover { border-color: var(--coal-alpha-20); }
+
+/* Subtle row tint applied to the ColorCard text section on hover (coal-A05). */
+.brand-card-tint-hover { transition: background-color var(--duration-interaction) var(--ease-newton); }
+.group:hover > .brand-card-tint-hover { background-color: var(--coal-alpha-05); }
+
+/* Primary button text slide-up — hover-capable devices only, so a tap on
+   touch doesn't trigger it and leave the label stuck mid-slide (sticky hover). */
+@media (hover: hover) {
+  .group:hover .slide-up-text { transform: translateY(var(--slide-up-translate, -100%)); }
+}
+
+/* ═══ TYPOGRAPHY — SINGLE SOURCE OF TRUTH ══════════════════════════════════
+ *
+ * Edit ALL type here. The app consumes ONLY these semantic utilities — no
+ * arbitrary text-[…]/leading-[…]/tracking-[…] and no inline font styles.
+ *
+ * Families : sans (Suisse Int'l) · code (mono, for data/code values)
+ * Weights  : 400 (regular) · 500 (medium) — no others
+ * Breakpts : md 768 · lg 1024 · xl 1280 (explicit steps; no fluid/clamp)
+ *
+ * Each utility carries font-family, size (responsive), weight, line-height,
+ * and tracking only. Color, max-width, and layout stay inline on the element.
+ * Display/headline use negative tracking so large type reads tight; hierarchy
+ * comes from size + weight, not color.
+ *
+ * ── Scale ──────────────────────────────────────────────────────────────────
+ *   Role            Size (mobile→md→lg/xl)   Weight  LH          Tracking
+ *   .text-display   40 → 64 → 80             500     1.1/1.15    -0.02em
+ *   .text-headline  28 → 40 → 48             500     1.1/1.2     -0.02em
+ *   .text-subheadline 20 → 28                500     1.2         -0.01em
+ *   .text-body      16                       400     1.5          0.16px
+ *   .text-ui        15                       500     1.4          0
+ *   .text-body-sm   14                       400     1.5          0.28px
+ *   .text-label     12 (uppercase)           500     normal       0.96px
+ *   .text-caption   12                       400     1.5          0
+ *   .text-code      14 (mono)                400     1.4          1.12px
+ * ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  --tracking-display: -0.02em;
+  --tracking-tight: -0.01em;
+}
+
+/* Display — hero headline */
+.text-display {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: var(--tracking-display);
+}
+@media (min-width: 768px) { .text-display { font-size: 64px; line-height: 1.15; } }
+@media (min-width: 1280px) { .text-display { font-size: 80px; } }
+
+/* Headline — section H2 */
+.text-headline {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: var(--tracking-display);
+}
+@media (min-width: 768px) { .text-headline { font-size: 40px; line-height: 1.2; } }
+@media (min-width: 1024px) { .text-headline { font-size: 48px; } }
+
+/* Subheadline — card / minor headings */
+.text-subheadline {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+}
+@media (min-width: 768px) { .text-subheadline { font-size: 28px; } }
+
+/* Body — default reading size */
+.text-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.16px;
+}
+
+/* UI — nav, buttons, card titles, sidebar (was scattered 15px / 16px) */
+.text-ui {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+/* Body small — form fields, footer, supporting copy (was scattered 14px) */
+.text-body-sm {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.28px;
+}
+
+/* Label — small uppercase eyebrow / metadata */
+.text-label {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+}
+
+/* Caption — smallest supporting text */
+.text-caption {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+/* Code — monospace data/code values (e.g. color values on /brand) */
+.text-code {
+  font-family: var(--font-code);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 1.12px;
+}
+
+/* ── Section rhythm ──────────────────────────────────────── */
+:root {
+  --space-section-y: 4rem;      /* 64px — mobile */
+  --space-section-y-md: 6rem;   /* 96px — desktop */
+}
+.section-y {
+  padding-top: var(--space-section-y);
+  padding-bottom: var(--space-section-y);
+}
+@media (min-width: 768px) {
+  .section-y {
+    padding-top: var(--space-section-y-md);
+    padding-bottom: var(--space-section-y-md);
+  }
+}
+
+/* Feature card icon: base filter + inversion on hover (desktop) or when the
+   card is scroll-activated (touch, via data-active — see FeatureCard). */
+.feature-icon { filter: var(--th-logo-filter); transition: filter var(--duration-interaction) var(--ease-newton); }
+@media (hover: hover) {
+  .group:hover .feature-icon { filter: var(--th-icon-hover-filter); }
+}
+.group[data-active="true"] .feature-icon { filter: var(--th-icon-hover-filter); }
+
+/* ── Noise texture ───────────────────────────────────────── */
+/*
+ * Reusable grain overlay recreating the Figma "Mono" noise (cell ~2.2px,
+ * ~48% density, black @10% on a light surface). Implemented as an SVG
+ * `feTurbulence` mask rather than a raster tile:
+ *   - the grain COLOR comes from a token (`--texture-noise-color`) via the
+ *     masked fill, so it follows the theme instead of being baked in;
+ *   - the SVG is resolution-independent (rasterized at device pixels), so it
+ *     stays crisp on 2x/3x with zero @2x assets and no moiré;
+ *   - it's overlay-only — an isolated `::after` sits above the surface's own
+ *     background and below its content, and repaints with the element (no
+ *     `background-attachment: fixed`, so no scroll repaint).
+ * Apply with the `.bg-noise` class on any surface.
+ */
+:root {
+  --texture-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='1.5' intercept='-0.25'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --texture-noise-color: var(--coal-950); /* near-black grain on the light surface */
+  --texture-noise-opacity: 0.05;
+}
+
+.bg-noise {
+  position: relative;
+  isolation: isolate;
+}
+.bg-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1; /* above the surface's own background, below its content */
+  pointer-events: none;
+  background-color: var(--texture-noise-color);
+  opacity: var(--texture-noise-opacity);
+  -webkit-mask-image: var(--texture-noise);
+          mask-image: var(--texture-noise);
+  -webkit-mask-size: 120px 120px;
+          mask-size: 120px 120px;
+  -webkit-mask-repeat: repeat;
+          mask-repeat: repeat;
+}
