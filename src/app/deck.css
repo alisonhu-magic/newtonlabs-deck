@@ -41,6 +41,10 @@
   font-size: 22px;
   line-height: 1.4;
 }
+.deck-slide .text-annotation {
+  font-size: 18px;
+  line-height: 1.4;
+}
 .deck-slide .text-code {
   font-size: 24px;
 }

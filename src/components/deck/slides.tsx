@@ -52,13 +52,15 @@ function DeckFrame({
   src,
   alt,
   aspectClass = "aspect-[3/2]",
+  className = "",
 }: {
   src?: string;
   alt?: string;
   aspectClass?: string;
+  className?: string;
 }) {
   return (
-    <AssetFrame className="w-full" innerClassName={aspectClass}>
+    <AssetFrame className={`w-full ${className}`} innerClassName={aspectClass}>
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -150,7 +152,7 @@ function Problem() {
         ))}
       </div>
       <div className="mt-auto flex flex-col gap-4">
-        <div className="rounded-md border border-surface-alt p-6">
+        <div className="rounded-md border border-surface-alt p-8">
           <p className="text-body text-on-surface-muted">{problemSlide.callout}</p>
         </div>
         <p className="text-ui text-on-surface">{problemSlide.closer}</p>
@@ -165,13 +167,20 @@ function WhatNewton() {
       <h2 className="text-headline text-on-surface max-w-[1200px] shrink-0">
         {whatNewtonSlide.headline}
       </h2>
-      <div className="grid grid-cols-3 grid-rows-1 gap-6 flex-1 min-h-0">
+      <div className="grid grid-cols-3 gap-6 flex-1 min-h-0">
         {whatNewtonSlide.cards.map((card) => (
           <DeckCard
             key={card.title}
-            icon={card.iconUrl}
             title={card.title}
             description={card.description}
+            media={
+              <DeckFrame
+                src={card.image.src}
+                alt={card.image.alt}
+                className="h-full"
+                aspectClass="h-full"
+              />
+            }
           />
         ))}
       </div>
@@ -217,13 +226,20 @@ function Consortium() {
       <h2 className="text-headline text-on-surface max-w-[1200px]">
         {consortiumSlide.headline}
       </h2>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-6 flex-1 min-h-0">
         {consortiumSlide.cards.map((card) => (
           <DeckCard
             key={card.title}
-            icon={card.iconUrl}
             title={card.title}
             description={card.description}
+            media={
+              <DeckFrame
+                src={card.image.src}
+                alt={card.image.alt}
+                className="h-full"
+                aspectClass="h-full"
+              />
+            }
           />
         ))}
       </div>
@@ -251,7 +267,7 @@ function Controls() {
         ))}
       </div>
       <div className="flex flex-col gap-2 mt-auto">
-        <p className="text-caption text-on-surface-subtle">{controlsSlide.footnote}</p>
+        <p className="text-annotation text-on-surface-subtle">{controlsSlide.footnote}</p>
         <p className="text-caption text-on-surface-subtle">{controlsSlide.closer}</p>
       </div>
     </div>
@@ -405,7 +421,7 @@ function Commercial() {
         {commercialSlide.pillars.map((pillar) => (
           <div
             key={pillar.title}
-            className="rounded-md border border-surface-alt p-5 flex flex-col gap-2"
+            className="rounded-md border border-surface-alt p-8 flex flex-col gap-2"
           >
             <p className="text-ui text-on-surface">{pillar.title}</p>
             <p className="text-body-sm text-on-surface-muted">{pillar.description}</p>
@@ -531,7 +547,7 @@ function Integration() {
         {integrationSlide.items.map((item) => (
           <div
             key={item.title}
-            className="rounded-md border border-surface-alt p-6 flex flex-col gap-2"
+            className="rounded-md border border-surface-alt p-8 flex flex-col gap-2"
           >
             <p className="text-ui text-on-surface">{item.title}</p>
             <p className="text-body-sm text-on-surface-muted">{item.description}</p>

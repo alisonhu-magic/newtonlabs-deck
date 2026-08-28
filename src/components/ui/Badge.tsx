@@ -7,11 +7,17 @@ import { type ReactNode } from "react";
 
 type BadgeVariant = "filled" | "outline" | "ghost";
 type BadgeSize = "sm" | "md";
+type BadgeTone = "default" | "success" | "danger";
 
 const variantStyles: Record<BadgeVariant, string> = {
   filled: "bg-surface-alt-subtle text-on-surface-muted",
   outline: "border border-surface-alt text-on-surface-muted",
   ghost: "text-on-surface-muted",
+};
+
+const outlineToneStyles: Record<Exclude<BadgeTone, "default">, string> = {
+  success: "border border-success text-success",
+  danger: "border border-danger text-danger",
 };
 
 const sizeStyles: Record<BadgeSize, string> = {
@@ -23,6 +29,7 @@ interface BadgeProps {
   children: ReactNode;
   variant?: BadgeVariant;
   size?: BadgeSize;
+  tone?: BadgeTone;
   withDot?: boolean;
   className?: string;
 }
@@ -31,12 +38,18 @@ export default function Badge({
   children,
   variant = "filled",
   size = "md",
+  tone = "default",
   withDot = false,
   className = "",
 }: BadgeProps) {
+  const colorClass =
+    variant === "outline" && tone !== "default"
+      ? outlineToneStyles[tone]
+      : variantStyles[variant];
+
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-md font-sans font-medium leading-none whitespace-nowrap ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={`inline-flex items-center gap-1.5 rounded-md font-sans font-medium leading-none whitespace-nowrap ${colorClass} ${sizeStyles[size]} ${className}`}
     >
       {withDot && (
         <span

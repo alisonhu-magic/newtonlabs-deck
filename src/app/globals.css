@@ -76,6 +76,8 @@
   --color-accent-active-text: var(--bone-alpha-60);
   /* Form validation — Ruby 90 */
   --color-danger: #ad2b03;
+  /* Compliance receipt — Approved */
+  --color-success: #0b6e4f;
 }
 
 /* ── Corner radius scale ─────────────────────────────────── */
@@ -290,6 +292,7 @@ img {
  *   .text-body-sm   14                       400     1.5          0.28px
  *   .text-label     12 (uppercase)           500     normal       0.96px
  *   .text-caption   12                       400     1.5          0
+ *   .text-annotation 12                      400     1.5          0
  *   .text-code      14 (mono)                400     1.4          1.12px
  * ─────────────────────────────────────────────────────────────────────────── */
 :root {
@@ -368,6 +371,15 @@ img {
 
 /* Caption — smallest supporting text */
 .text-caption {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+/* Annotation — footnotes, legends, source notes */
+.text-annotation {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 12px;

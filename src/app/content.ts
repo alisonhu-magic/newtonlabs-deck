@@ -56,22 +56,22 @@ export const whatNewtonSlide = {
     "Risk controls, enforced before settlement. Continuously verifiable by any carrier.",
   cards: [
     {
-      iconUrl: "/assets/icons/composable.svg",
       title: "Controls become enforceable rules.",
       description:
         "Written in Rego, referencing the data that decides them: audit registries, oracle configurations, price feed sources, sanctions lists, signing state. Onchain or offchain.",
+      image: { src: "", alt: "" },
     },
     {
-      iconUrl: "/assets/icons/enforcement.svg",
       title: "An independent network enforces them.",
       description:
         "Rules are evaluated by Newton's operator network rather than the curator or platform. Evaluation completes before the transaction settles; transactions proceed only if the checks pass.",
+      image: { src: "", alt: "" },
     },
     {
-      iconUrl: "/assets/icons/verify.svg",
       title: "Every evaluation is attested onchain.",
       description:
         "Each evaluation produces an onchain attestation, and every rule version is a permanent onchain artifact. What was enforced, what was checked, and what changed is public record.",
+      image: { src: "", alt: "" },
     },
   ],
 } as const;
@@ -117,22 +117,22 @@ export const consortiumSlide = {
     "The consortium writes the rules. Newton proves the rules were in place.",
   cards: [
     {
-      iconUrl: "/assets/icons/composable.svg",
       title: "Written standard.",
       description:
         "The consortium publishes its control framework: the criteria a coverable vault must meet.",
+      image: { src: "", alt: "" },
     },
     {
-      iconUrl: "/assets/icons/enforcement.svg",
       title: "Enforceable pack.",
       description:
         "Each control becomes an enforceable rule. The rules compose into a versioned onchain pack. Updates propagate to adopting vaults; version history is public.",
+      image: { src: "", alt: "" },
     },
     {
-      iconUrl: "/assets/icons/verify.svg",
       title: "Verified adoption.",
       description:
         "A carrier quoting a vault checks one thing: the pack is in force and enforced. Attestations show it continuously, for the life of the policy.",
+      image: { src: "", alt: "" },
     },
   ],
   closer: "One pack, adopted across vaults, verifiable by any carrier.",
