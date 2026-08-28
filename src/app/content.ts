@@ -11,18 +11,19 @@ export const deckMeta = {
 } as const;
 
 export const titleSlide = {
-  headline: "Verifiable risk controls for scaling DeFi insurance.",
+  headline: "Proof of Controls",
+  subheadline: "Verifiable risk controls for scaling DeFi insurance.",
   lede: "Prepared for Aon · 2026",
 } as const;
 
 export const goalSlide = {
   label: "The Goal",
-  headline: "Vault coverage scales when carriers can verify risk controls.",
+  headline: "Vault coverage scales when carriers can trust the controls.",
   body: "Verified controls let rates fall. Falling rates let coverage scale: more vaults covered, larger limits, more carriers writing. Premium dollars grow with all of it.",
   stats: [
     { value: "~5%", label: "Today" },
     { value: "~3.5–4%", label: "Strong controls, self-enforced" },
-    { value: "2%", label: "Independent verification" },
+    { value: "2%", label: "Target rate with independent verification" },
   ],
   footnote: "Independent verification is the path to 2%.",
   image: {
@@ -56,10 +57,10 @@ export const problemSlide = {
 export const whatNewtonSlide = {
   label: "What Newton Is",
   headline:
-    "Risk controls, enforced before settlement. Continuously verifiable by any carrier.",
+    "Risk controls, enforced before settlement. Provable at any moment.",
   cards: [
     {
-      title: "Controls become enforceable rules",
+      title: "Controls expressed as rules",
       description:
         "Written in Rego, referencing the data that decides them: audit registries, oracle configurations, price feed sources, sanctions lists, signing state. Onchain or offchain.",
       image: {
@@ -72,8 +73,8 @@ export const whatNewtonSlide = {
       description:
         "Rules are evaluated by Newton's operator network rather than the curator or platform. Evaluation completes before the transaction settles; transactions proceed only if the checks pass.",
       image: {
-        src: "/assets/what-newton/network.png",
-        alt: "Newton policy evaluation result card showing a compliant status.",
+        src: "/assets/what-newton/network.webp",
+        alt: "Network diagram: a curator's intent flows through Newton operators and Shield validation before the vault executes onchain actions.",
       },
     },
     {
@@ -138,7 +139,7 @@ export const consortiumSlide = {
       iconUrl: "/assets/icons/shield-check.svg",
       title: "Enforceable pack",
       description:
-        "Each control becomes an enforceable rule. The rules compose into a versioned onchain pack. Updates propagate to adopting vaults; version history is public.",
+        "Each control is written as an enforceable rule. The rules compose into a versioned onchain pack. Updates propagate to adopting vaults; version history is public.",
     },
     {
       iconUrl: "/assets/icons/seal-check.svg",
@@ -152,7 +153,7 @@ export const consortiumSlide = {
 
 export const controlsSlide = {
   label: "Risk Control Examples",
-  headline: "The controls carriers ask for, enforced as rules.",
+  headline: "Carrier requirements: from checklist to code.",
   cards: [
     {
       iconUrl: "/assets/icons/security.svg",
@@ -203,7 +204,7 @@ export const controlsSlide = {
 
 export const carrierSlide = {
   label: "What the Carrier Sees",
-  headline: "Verification the carrier reads directly.",
+  headline: "A live window on every covered vault.",
   points: [
     {
       title: "The transparency dashboard.",
@@ -222,8 +223,8 @@ export const carrierSlide = {
     },
   ],
   image: {
-    src: "/assets/workflow/step-4-light.png",
-    alt: "Newton explorer — recent tasks list with per-transaction evaluation results (compliant, non-compliant, pending)",
+    src: "/assets/workflow/step-4-light.webp",
+    alt: "Newton explorer — Verified Curator Actions history with per-action evaluation results (approved, denied)",
   },
   caption: "Evaluation record — every decision attested onchain.",
 } as const;
@@ -233,7 +234,7 @@ export const workingModelSlide = {
   headline: "Four roles, one product.",
   cards: [
     {
-      iconUrl: "/assets/icons/list-checks.svg",
+      iconUrl: "/assets/icons/bank.svg",
       title: "The consortium",
       description:
         "Defines the control framework: what a coverable vault meets.",
@@ -251,7 +252,7 @@ export const workingModelSlide = {
         "Brings the framework to clients and carriers as an Aon-branded offering, powered (and verified) by Newton.",
     },
     {
-      iconUrl: "/assets/icons/gear-six.svg",
+      iconUrl: "/assets/icons/users-three.svg",
       title: "STG",
       description:
         "Operationalizes: documentation, carrier strategy, the path from framework to bound policies.",
@@ -263,7 +264,7 @@ export const workingModelSlide = {
 
 export const acrossBookSlide = {
   label: "Across the Book",
-  headline: "One verification layer, every digital asset line.",
+  headline: "A verification layer for every digital asset line.",
   featured: {
     title: "DeFi vaults",
     description:
@@ -301,9 +302,9 @@ export const acrossBookSlide = {
 export const whoBuildsSlide = {
   label: "Who Builds Newton",
   headline:
-    "Built by the team that ran wallet infrastructure for 56M+ accounts.",
+    "We solved onboarding for 56M accounts. Now we solve authorization.",
   body: "Newton Labs, formerly Magic Labs. Our wallet infrastructure served 56M+ accounts across consumer and institutional applications, including Polymarket, before Payward, Kraken's parent company, acquired the wallet business.",
-  bodyClose: "Newton applies the same discipline to enforcement.",
+  bodyClose: "Newton is the authorization layer for onchain finance.",
   stat: { value: "$80M+", label: "Raised from top backers" },
   badges: ["SOC 2 Type II", "ISO 27001"],
 } as const;
@@ -335,7 +336,7 @@ export const commercialSlide = {
   ],
   table: {
     caption: "The curator’s view",
-    headers: ["", "Standards, self-enforced", "Verified via Aon"],
+    headers: ["", "Standards, self-enforced", "Verified"],
     rows: [
       { label: "Rate", self: "~3.5–4%", verified: "2%" },
       {
@@ -351,7 +352,7 @@ export const commercialSlide = {
     "A service, not monitoring: the same dashboard markets the vault to allocators, and curators extend the pack with their own rules within the framework.",
     "Data stays direct: the curator’s existing provider subscriptions power the rules. Newton adds no markup and holds no data.",
   ],
-  footnote: "A starting structure, sized to be shaped with STG.",
+  footnote: "A starting structure to be shaped with STG.",
 } as const;
 
 export const pathSlide = {
@@ -363,7 +364,7 @@ export const pathSlide = {
       title: "Now",
       description:
         "Map the consortium’s draft framework to an enforceable pack, in step with the September publication.",
-      iconUrl: "/assets/icons/package.svg",
+      iconUrl: "/assets/icons/note-pencil.svg",
     },
     {
       number: "2",
@@ -421,14 +422,14 @@ export const architectureSlide = {
 
 export const integrationSlide = {
   label: "Appendix · Integration",
-  headline: "Three paths in. Shield is the recommended path.",
+  headline: "Three integration paths.",
   featured: {
     title: "Newton Shield, in front of the curator’s wallet.",
     description:
       "Deploy Shield and delegate curator control to it. Every instruction is evaluated before it reaches the vault, so nothing settles unless it passes. Wallet controls like signer quorum become independently verifiable, and rules the wallet cannot express are added in the same step. No change to the vault contract, no redeployment, no new audit — the best path for vaults that are already live.",
     image: {
-      src: "/assets/workflow/step-2-light.png",
-      alt: "Newton demo vault — verified vault page with APY, deposits, and policy details",
+      src: "/assets/workflow/step-2-light.webp",
+      alt: "Newton demo vault — Policy view showing smart-contract-enforced policy rules with categories and controls",
     },
   },
   items: [

@@ -50,6 +50,12 @@ export const slides: DeckSlide[] = [
   { label: integrationSlide.label, render: Integration },
 ];
 
+/**
+ * Image column system for split (copy + media) slides on the 12-col stage.
+ * Media never exceeds 6 columns:
+ *   - Standard media  → media col-span-5, copy col-span-7
+ *   - Diagram/detailed (dashboards, flow diagrams) → media col-span-6, copy col-span-6
+ */
 function DeckFrame({
   src,
   alt,
@@ -100,7 +106,12 @@ function Title() {
           />
         </div>
         <div className="flex flex-col items-center gap-6">
-          <h1 className="text-display text-on-surface">{titleSlide.headline}</h1>
+          <div className="flex flex-col items-center gap-4">
+            <h1 className="text-display text-on-surface">{titleSlide.headline}</h1>
+            <p className="text-subheadline text-on-surface-muted">
+              {titleSlide.subheadline}
+            </p>
+          </div>
           <p className="text-body text-on-surface-muted">{titleSlide.lede}</p>
         </div>
       </div>
@@ -111,10 +122,10 @@ function Title() {
 function Goal() {
   return (
     <div className="grid grid-cols-12 gap-10 items-center flex-1 min-h-0">
-      <div className="col-span-6 min-w-0">
+      <div className="col-span-5 min-w-0">
         <DeckFrame src={goalSlide.image.src} alt={goalSlide.image.alt} />
       </div>
-      <div className="col-span-6 flex flex-col gap-8">
+      <div className="col-span-7 flex flex-col gap-8">
         <div className="flex flex-col gap-6">
           <h2 className="text-headline text-on-surface">{goalSlide.headline}</h2>
           <p className="text-body text-on-surface-muted">{goalSlide.body}</p>
@@ -155,10 +166,10 @@ function Problem() {
           />
         ))}
       </div>
-      <div className="mt-auto flex flex-col gap-2">
-        <p className="text-label text-on-surface-muted">{problemSlide.closer}</p>
+      <div className="border border-surface-alt p-8 w-full rounded-md">
         <p className="text-quote text-on-surface">{problemSlide.callout}</p>
       </div>
+      <p className="text-quote text-on-surface mt-auto">{problemSlide.closer}</p>
     </div>
   );
 }
@@ -196,21 +207,21 @@ function Underwriting() {
         {underwritingSlide.headline}
       </h2>
       <div className="rounded-md border border-surface-alt bg-surface-alt-subtle overflow-hidden">
-        <div className="grid grid-cols-2 gap-8 px-6 py-4 border-b border-surface-alt bg-surface-alt-hover">
-          <p className="text-body-sm text-on-surface-muted">
+        <div className="grid grid-cols-2 border-b border-surface-alt bg-surface-alt-hover divide-x divide-surface-alt">
+          <p className="px-6 py-4 text-body-sm text-on-surface-muted">
             {underwritingSlide.columns.today}
           </p>
-          <p className="text-body-sm text-on-surface">
+          <p className="px-6 py-4 text-body-sm text-on-surface">
             {underwritingSlide.columns.newton}
           </p>
         </div>
         {underwritingSlide.rows.map((row) => (
           <div
             key={row.today}
-            className="grid grid-cols-2 gap-8 px-6 py-4 border-b border-surface-alt last:border-b-0"
+            className="grid grid-cols-2 border-b border-surface-alt last:border-b-0 divide-x divide-surface-alt"
           >
-            <p className="text-body text-on-surface-muted">{row.today}</p>
-            <p className="text-body text-on-surface">{row.newton}</p>
+            <p className="px-6 py-4 text-body text-on-surface-muted">{row.today}</p>
+            <p className="px-6 py-4 text-body text-on-surface">{row.newton}</p>
           </div>
         ))}
       </div>
@@ -263,8 +274,8 @@ function Controls() {
         ))}
       </div>
       <div className="flex flex-col gap-2 mt-auto">
-        <p className="text-caption text-on-surface-subtle whitespace-pre-line">{controlsSlide.footnote}</p>
-        <p className="text-caption text-on-surface-subtle">{controlsSlide.closer}</p>
+        <p className="text-body-sm text-on-surface-subtle whitespace-pre-line">{controlsSlide.footnote}</p>
+        <p className="text-body-sm text-on-surface-subtle">{controlsSlide.closer}</p>
       </div>
     </div>
   );
@@ -276,15 +287,15 @@ function Carrier() {
       <h2 className="text-headline text-on-surface max-w-[1200px]">
         {carrierSlide.headline}
       </h2>
-      <div className="grid grid-cols-12 gap-8 items-center flex-1 min-h-0">
+      <div className="grid grid-cols-12 gap-10 items-center flex-1 min-h-0">
         <PointList
           points={carrierSlide.points}
           gapClassName="gap-14"
-          className="col-span-5"
+          className="col-span-6"
         />
-        <div className="col-span-7 min-w-0">
+        <div className="col-span-6 min-w-0">
           <DeckFrame src={carrierSlide.image.src} alt={carrierSlide.image.alt} />
-          <p className="text-caption text-on-surface-subtle mt-3">
+          <p className="text-body-sm text-on-surface-subtle mt-3">
             {carrierSlide.caption}
           </p>
         </div>
@@ -339,24 +350,11 @@ function AcrossBook() {
             <div className="col-span-7 flex flex-col gap-3">
               <h3 className="text-subheadline text-on-surface">{item.title}</h3>
               <p className="text-body-sm text-on-surface-muted">{item.description}</p>
-              <PolicyPills policies={item.policies} />
             </div>
           </div>
         ))}
       </div>
       <p className="text-quote text-on-surface">{acrossBookSlide.closer}</p>
-    </div>
-  );
-}
-
-function PolicyPills({ policies }: { policies: readonly string[] }) {
-  return (
-    <div className="flex flex-wrap gap-2">
-      {policies.map((policy) => (
-        <Badge key={policy} className="rounded-full">
-          {policy}
-        </Badge>
-      ))}
     </div>
   );
 }
@@ -387,15 +385,15 @@ function WhoBuilds() {
             </p>
           </div>
         </div>
-        <div className="flex flex-col items-center gap-12">
+        <div className="flex flex-col items-center gap-4">
           <p className="text-label text-on-surface">
             {whoBuildsSlide.stat.value} {whoBuildsSlide.stat.label}
           </p>
           <div
-            className="flex flex-col items-center gap-12 px-24 py-12"
+            className="flex flex-col items-center gap-12 px-40 py-10"
             style={{
               background:
-                "radial-gradient(ellipse at center, var(--color-surface) 0%, var(--color-surface) 42%, var(--bone-50-alpha-0) 80%)",
+                "radial-gradient(ellipse 85% 130% at center, var(--color-surface) 0%, var(--color-surface) 62%, var(--bone-50-alpha-0) 100%)",
             }}
           >
             {logoRows.map((row, i) => (
@@ -445,12 +443,12 @@ function Commercial() {
           <p className="text-label text-on-surface mb-6">
             {commercialSlide.table.caption}
           </p>
-          <div className="rounded-md border border-surface-alt bg-surface-alt-subtle overflow-hidden">
-            <div className="grid grid-cols-3 gap-4 px-6 py-6 border-b border-surface-alt bg-surface-alt-hover">
+          <div className="rounded-md border border-surface-alt bg-surface-alt-faint overflow-hidden">
+            <div className="grid grid-cols-3 border-b border-surface-alt bg-surface-alt-subtle divide-x divide-surface-alt">
               {commercialSlide.table.headers.map((header, i) => (
                 <p
                   key={header || "blank"}
-                  className={`text-body-sm ${i === 2 ? "text-on-surface" : "text-on-surface-muted"}`}
+                  className={`px-6 py-6 text-body-sm ${i === 2 ? "text-on-surface" : "text-on-surface-muted"}`}
                 >
                   {header}
                 </p>
@@ -459,11 +457,15 @@ function Commercial() {
             {commercialSlide.table.rows.map((row) => (
               <div
                 key={row.label}
-                className="grid grid-cols-3 gap-4 px-6 py-6 border-b border-surface-alt last:border-b-0"
+                className="grid grid-cols-3 border-b border-surface-alt last:border-b-0 divide-x divide-surface-alt"
               >
-                <p className="text-body-sm text-on-surface">{row.label}</p>
-                <p className="text-body-sm text-on-surface-muted">{row.self}</p>
-                <p className="text-body-sm text-on-surface">{row.verified}</p>
+                <p className="px-6 py-6 text-body-sm text-on-surface">{row.label}</p>
+                <p className="px-6 py-6 text-body-sm text-on-surface-muted">
+                  {row.self}
+                </p>
+                <p className="px-6 py-6 text-body-sm text-on-surface">
+                  {row.verified}
+                </p>
               </div>
             ))}
           </div>
@@ -478,7 +480,7 @@ function Commercial() {
                 {note}
               </p>
             ))}
-            <p className="text-caption text-on-surface-subtle">
+            <p className="text-body-sm text-on-surface-muted">
               {commercialSlide.footnote}
             </p>
           </div>
@@ -508,7 +510,7 @@ function Path() {
               </div>
               <div className="flex flex-col gap-2">
                 <h3 className="text-subheadline text-on-surface">
-                  <span className="text-accent">{step.number}.</span> {step.title}
+                  <span className="text-on-surface">{step.number}.</span> {step.title}
                 </h3>
                 <p className="text-body-sm text-on-surface-muted">{step.description}</p>
               </div>
@@ -527,18 +529,13 @@ function Architecture() {
         <h2 className="text-headline text-on-surface">{architectureSlide.headline}</h2>
         <p className="text-body-sm text-on-surface-muted">{architectureSlide.lede}</p>
       </div>
-      <div className="grid grid-cols-12 gap-8 items-center flex-1 min-h-0">
-        <div className="col-span-6 flex flex-col">
-          {architectureSlide.steps.map((step) => (
-            <div key={step.number} className="flex gap-5 items-start py-3">
-              <p className="text-ui text-accent shrink-0 w-8">{step.number}.</p>
-              <div className="flex flex-col gap-2">
-                <p className="text-ui text-on-surface">{step.title}</p>
-                <p className="text-body-sm text-on-surface-muted">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-12 gap-10 items-center flex-1 min-h-0">
+        <PointList
+          points={architectureSlide.steps}
+          numbered
+          dense
+          className="col-span-6"
+        />
         <div className="col-span-6 min-w-0">
           <DeckFrame
             src={architectureSlide.image.src}
@@ -564,7 +561,7 @@ function Integration() {
       <h2 className="text-headline text-on-surface max-w-[1200px]">
         {integrationSlide.headline}
       </h2>
-      <div className="grid grid-cols-12 gap-8 items-center flex-1 min-h-0">
+      <div className="grid grid-cols-12 gap-10 items-center flex-1 min-h-0">
         {/* Left — three integration paths as cards */}
         <div className="col-span-7 flex flex-col gap-4 min-w-0">
           {integrationPaths.map((path) => (
@@ -597,10 +594,10 @@ function Integration() {
             src={integrationSlide.featured.image.src}
             alt={integrationSlide.featured.image.alt}
           />
-          <p className="text-caption text-on-surface-subtle">
+          <p className="text-body-sm text-on-surface-subtle">
             {integrationSlide.closer}
           </p>
-          <p className="text-caption text-on-surface-subtle">
+          <p className="text-body-sm text-on-surface-subtle">
             {integrationSlide.footnote}
           </p>
         </div>

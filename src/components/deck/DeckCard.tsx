@@ -43,7 +43,7 @@ export default function DeckCard({
                 badge === "Verified"
                   ? "success"
                   : badge === "Enforced"
-                    ? "danger"
+                    ? "accent"
                     : "default"
               }
               className="rounded-full"

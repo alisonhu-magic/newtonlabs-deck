@@ -13,3 +13,6 @@ next-env.d.ts
 
 # deck exports (generated PDFs / preview images)
 /exports/
+
+# generated validation artifacts (renders, comparisons, pptx/pdf output)
+/output/

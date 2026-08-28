@@ -102,7 +102,7 @@ export default function Deck() {
       </div>
 
       {hint && (
-        <p className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 text-caption text-on-accent/80 print:hidden">
+        <p className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 text-body-sm text-on-accent/80 print:hidden">
           Arrow keys or scroll to advance · ⌘P to export PDF
         </p>
       )}

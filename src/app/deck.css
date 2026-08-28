@@ -42,17 +42,6 @@
   font-size: 18px;
   letter-spacing: 1.44px;
 }
-.deck-slide .text-caption {
-  font-size: 22px;
-  line-height: 1.4;
-}
-.deck-slide .text-annotation {
-  font-size: 18px;
-  line-height: 1.4;
-}
-.deck-slide .text-code {
-  font-size: 24px;
-}
 .deck-slide .text-xs {
   font-size: 18px;
   line-height: 1.3;

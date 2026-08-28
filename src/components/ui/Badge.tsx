@@ -21,10 +21,13 @@ const outlineToneStyles: Record<Exclude<BadgeTone, "default">, string> = {
   accent: "border border-accent text-accent bg-accent-subtle",
 };
 
+// Asymmetric vertical padding (pt slightly > pb) optically centers the text:
+// uppercase glyphs with `leading-none` leave empty descender space below, so
+// pure `items-center` makes the words read a touch high in the outline.
 const sizeStyles: Record<BadgeSize, string> = {
-  sm: "px-2 py-1.5 text-xs",
-  md: "px-2.5 py-2 text-xs",
-  lg: "px-3 py-2 text-body-sm",
+  sm: "px-2 pt-[7px] pb-[5px] text-xs",
+  md: "px-2.5 pt-[9px] pb-[7px] text-xs",
+  lg: "px-3 pt-[9px] pb-[7px] text-body-sm",
 };
 
 interface BadgeProps {

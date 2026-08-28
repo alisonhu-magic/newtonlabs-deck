@@ -69,6 +69,7 @@
   --color-surface-alt-hover: var(--coal-alpha-08);
   --color-surface-alt-strong: var(--coal-alpha-20);
   --color-surface-alt-subtle: var(--coal-alpha-05);
+  --color-surface-alt-faint: var(--coal-alpha-04);
   /* Accent — brand blue (single product accent) */
   --color-accent: var(--blue-500);
   --color-on-accent: var(--bone-50);
@@ -306,9 +307,6 @@ img {
  *   .text-ui        15                       500     1.4          0
  *   .text-body-sm   14                       400     1.5          0.28px
  *   .text-label     12 (uppercase)           500     normal       0.96px
- *   .text-caption   12                       400     1.5          0
- *   .text-annotation 12                      400     1.5          0
- *   .text-code      14 (mono)                400     1.4          1.12px
  * ─────────────────────────────────────────────────────────────────────────── */
 :root {
   --tracking-display: -0.02em;
@@ -399,35 +397,6 @@ img {
   line-height: normal;
   letter-spacing: 0.96px;
   text-transform: uppercase;
-}
-
-/* Caption — smallest supporting text */
-.text-caption {
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.5;
-  letter-spacing: 0;
-  text-wrap: pretty;
-}
-
-/* Annotation — footnotes, legends, source notes */
-.text-annotation {
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.5;
-  letter-spacing: 0;
-  text-wrap: pretty;
-}
-
-/* Code — monospace data/code values (e.g. color values on /brand) */
-.text-code {
-  font-family: var(--font-code);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.4;
-  letter-spacing: 1.12px;
 }
 
 /* ── Section rhythm ──────────────────────────────────────── */
