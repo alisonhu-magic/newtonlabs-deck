@@ -5,4 +5,8 @@ export const meta = {
   ticket: "NEWT-2470",
   status: "archived" as const,
   slideCount: 15,
+  downloads: {
+    full: "/downloads/aon.pdf",
+    compressed: "/downloads/aon-compressed.pdf",
+  },
 } as const;

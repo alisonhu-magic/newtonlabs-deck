@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { asset } from "@/lib/asset";
 
 type Crop = {
   readonly w: string;
@@ -68,7 +69,7 @@ export default function AssetFrame({
           (crop ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={src}
+              src={src ? asset(src) : src}
               alt={alt}
               className="absolute max-w-none rounded-[8px]"
               style={{ width: crop.w, height: crop.h, left: crop.left, top: crop.top }}
@@ -76,7 +77,7 @@ export default function AssetFrame({
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={src}
+              src={src ? asset(src) : src}
               alt={alt}
               className="absolute inset-0 w-full h-full object-cover rounded-[8px]"
             />

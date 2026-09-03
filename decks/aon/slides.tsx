@@ -1,6 +1,7 @@
 import Badge from "@/components/ui/Badge";
 import AssetFrame from "@/components/ui/AssetFrame";
 import { siteConfig } from "@/app/site.config";
+import { asset } from "@/lib/asset";
 import DeckCard from "@/components/deck/DeckCard";
 import PointList from "@/components/deck/PointList";
 import Slide from "@/components/deck/Slide";
@@ -66,7 +67,7 @@ function DeckFrame({
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={src}
+          src={asset(src)}
           alt={alt ?? ""}
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -500,7 +501,7 @@ function Path() {
               )}
               <div className="relative z-10 size-20 rounded-full border border-on-surface bg-surface flex items-center justify-center p-5 shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={step.iconUrl} alt="" className="w-8 h-8 theme-icon" />
+                <img src={asset(step.iconUrl)} alt="" className="w-8 h-8 theme-icon" />
               </div>
               <div className="flex flex-col gap-2">
                 <h3 className="text-subheadline text-on-surface">
