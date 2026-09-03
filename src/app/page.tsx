@@ -1,9 +1,33 @@
 import Link from "next/link";
-import { deckListings, type DeckListing } from "@decks/catalog";
+import { deckListings } from "@decks/catalog";
+import { sheetMeta } from "@/app/sheet/content";
+import DownloadButton from "@/components/ui/DownloadButton";
+import { pdfDownload, type DownloadLink } from "@/lib/downloads";
 
 export default function Home() {
-  const active = deckListings.filter((d) => d.status === "active");
-  const archived = deckListings.filter((d) => d.status === "archived");
+  const items = [
+    {
+      key: "sheet",
+      href: sheetMeta.href,
+      title: sheetMeta.title,
+      subtitle: sheetMeta.subtitle,
+      ticket: sheetMeta.ticket,
+      meta: "A4",
+      downloads: [pdfDownload(sheetMeta.downloads.full, "pdf")],
+    },
+    ...deckListings.map((deck) => ({
+      key: deck.slug,
+      href: `/d/${deck.slug}`,
+      title: deck.title,
+      subtitle: deck.subtitle,
+      ticket: deck.ticket,
+      meta: `${deck.slideCount} slides`,
+      downloads: [
+        pdfDownload(deck.downloads.full, "full"),
+        pdfDownload(deck.downloads.compressed, "compressed"),
+      ],
+    })),
+  ];
 
   return (
     <main className="min-h-screen bg-surface text-on-surface">
@@ -16,45 +40,62 @@ export default function Home() {
           </p>
         </header>
 
-        <DeckGroup title="Active" decks={active} />
-        {archived.length > 0 && <DeckGroup title="Archived" decks={archived} />}
+        <ul className="flex flex-col gap-4">
+          {items.map((item) => (
+            <li key={item.key}>
+              <CatalogCard
+                href={item.href}
+                title={item.title}
+                subtitle={item.subtitle}
+                ticket={item.ticket}
+                meta={item.meta}
+                downloads={item.downloads.filter(
+                  (d): d is DownloadLink => d !== null,
+                )}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
     </main>
   );
 }
 
-function DeckGroup({
+function CatalogCard({
+  href,
   title,
-  decks,
+  subtitle,
+  ticket,
+  meta,
+  downloads,
 }: {
+  href: string;
   title: string;
-  decks: readonly DeckListing[];
+  subtitle: string;
+  ticket: string;
+  meta: string;
+  downloads: DownloadLink[];
 }) {
-  if (decks.length === 0) return null;
   return (
-    <section className="flex flex-col gap-6">
-      <h2 className="text-label text-on-surface-subtle">{title}</h2>
-      <ul className="flex flex-col gap-4">
-        {decks.map((deck) => (
-          <li key={deck.slug}>
-            <Link
-              href={`/d/${deck.slug}`}
-              className="group flex flex-col gap-2 rounded-md border border-surface-alt px-6 py-5 transition-colors duration-[var(--duration-interaction)] ease-[var(--ease-newton)] hover:border-accent"
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <p className="text-ui text-on-surface underline-offset-4 group-hover:underline">
-                  {deck.title}
-                </p>
-                <p className="shrink-0 text-label text-on-surface-subtle">
-                  {deck.slideCount} slides
-                </p>
-              </div>
-              <p className="text-body-sm text-on-surface-muted">{deck.subtitle}</p>
-              <p className="text-label text-on-surface-subtle">{deck.ticket}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <div className="flex items-start justify-between gap-6 rounded-md border border-surface-alt px-6 py-5">
+      <div className="flex flex-col gap-2 min-w-0">
+        <Link
+          href={href}
+          className="text-ui text-on-surface rounded-md underline-offset-4 hover:underline"
+        >
+          {title}
+        </Link>
+        <p className="text-label text-on-surface-subtle">{meta}</p>
+        <p className="text-body-sm text-on-surface-muted">{subtitle}</p>
+        <p className="text-label text-on-surface-subtle">{ticket}</p>
+      </div>
+      {downloads.length > 0 && (
+        <div className="flex flex-col items-end gap-2 shrink-0">
+          {downloads.map((file) => (
+            <DownloadButton key={file.href} file={file} />
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

@@ -1,6 +1,7 @@
 import Badge from "@/components/ui/Badge";
 import AssetFrame from "@/components/ui/AssetFrame";
 import { siteConfig } from "@/app/site.config";
+import { asset } from "@/lib/asset";
 import Callout from "@/components/deck/Callout";
 import DeckCard from "@/components/deck/DeckCard";
 import PointList from "@/components/deck/PointList";
@@ -81,7 +82,7 @@ function DeckFrame({
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={src}
+          src={asset(src)}
           alt={alt ?? ""}
           className={
             crop

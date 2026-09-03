@@ -1,0 +1,79 @@
+/* A4 one-sheet. Type is locked so viewport breakpoints in globals.css
+ * cannot blow headlines to 80px inside a 210mm page. */
+
+.sheet-desk {
+  --preview-w: 210mm;
+  background: var(--color-surface-alt-subtle);
+}
+
+.sheet-page {
+  width: 210mm;
+  height: 297mm;
+  background: var(--color-surface);
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--color-on-surface) 8%, transparent);
+}
+
+.sheet-page .text-headline {
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: var(--tracking-display);
+}
+
+.sheet-page .text-ui {
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.sheet-page .text-body-sm {
+  font-size: 12.5px;
+  line-height: 1.45;
+  letter-spacing: 0.2px;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.sheet-page .text-quote {
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: 0.12px;
+}
+
+.sheet-page .text-label {
+  font-size: 10px;
+  letter-spacing: 0.8px;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  html,
+  body {
+    background: var(--color-surface) !important;
+  }
+
+  .sheet-desk {
+    display: block !important;
+    background: transparent !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  .sheet-page {
+    box-shadow: none !important;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .sheet-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+}

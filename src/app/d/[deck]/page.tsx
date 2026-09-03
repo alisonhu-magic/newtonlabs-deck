@@ -7,6 +7,7 @@ import {
   type DeckSlug,
 } from "@decks/catalog";
 import DeckViewer from "./viewer";
+import { pdfDownload, type DownloadLink } from "@/lib/downloads";
 
 type PageProps = {
   params: Promise<{ deck: string }>;
@@ -31,5 +32,10 @@ export async function generateMetadata({
 export default async function DeckPage({ params }: PageProps) {
   const { deck: slug } = await params;
   if (!isDeckSlug(slug)) notFound();
-  return <DeckViewer slug={slug as DeckSlug} />;
+  const listing = getDeckListing(slug as DeckSlug);
+  const downloads = [
+    pdfDownload(listing.downloads.full, "full"),
+    pdfDownload(listing.downloads.compressed, "compressed"),
+  ].filter((d): d is DownloadLink => d !== null);
+  return <DeckViewer slug={slug as DeckSlug} downloads={downloads} />;
 }

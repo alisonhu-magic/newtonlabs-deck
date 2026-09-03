@@ -12,7 +12,7 @@ import { mkdirSync, rmSync } from "node:fs";
 // Screen media is forced so @media print does not unhide every slide.
 
 const DECK = process.env.DECK ?? "fund-admins";
-const URL = process.env.DECK_URL ?? `http://127.0.0.1:3000/d/${DECK}/`;
+const URL = process.env.DECK_URL ?? `http://127.0.0.1:3000/d/${DECK}/present/`;
 const OUT = process.env.OUT ?? `exports/${DECK}.pdf`;
 const TOTAL_ENV = process.env.SLIDES ? Number(process.env.SLIDES) : null;
 const SCALE = Number(process.env.SCALE ?? 2);

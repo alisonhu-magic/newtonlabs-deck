@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Badge from "@/components/ui/Badge";
+import { asset } from "@/lib/asset";
 
 /** Static FeatureCard chrome for the deck — no hover inversion. */
 export default function DeckCard({
@@ -39,7 +40,7 @@ export default function DeckCard({
           {icon ? (
             <div className="size-14 rounded-full border border-on-surface flex items-center justify-center p-3.5 shrink-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={icon} alt="" className="w-6 h-6 object-contain theme-icon" />
+              <img src={asset(icon)} alt="" className="w-6 h-6 object-contain theme-icon" />
             </div>
           ) : (
             <span />
