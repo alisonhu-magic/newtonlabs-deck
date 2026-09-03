@@ -2,15 +2,24 @@
  * cannot blow headlines to 80px inside a 210mm page. */
 
 .sheet-desk {
-  --preview-w: 210mm;
+  --preview-w: min(210mm, calc(100vw - 3rem));
   background: var(--color-surface-alt-subtle);
+}
+
+.sheet-page-frame {
+  width: var(--preview-w);
+  height: calc(var(--preview-w) * 297 / 210);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--color-on-surface) 8%, transparent);
 }
 
 .sheet-page {
   width: 210mm;
   height: 297mm;
+  transform-origin: top left;
+  transform: scale(calc(var(--preview-w) / 210mm));
   background: var(--color-surface);
-  box-shadow: 0 12px 40px color-mix(in srgb, var(--color-on-surface) 8%, transparent);
 }
 
 .sheet-page .text-headline {
@@ -73,14 +82,21 @@
     gap: 0 !important;
   }
 
-  .sheet-page {
+  .sheet-page-frame {
+    width: 210mm !important;
+    height: 297mm !important;
+    overflow: visible !important;
     box-shadow: none !important;
     break-after: page;
     page-break-after: always;
   }
 
-  .sheet-page:last-child {
+  .sheet-page-frame:last-child {
     break-after: auto;
     page-break-after: auto;
+  }
+
+  .sheet-page {
+    transform: none !important;
   }
 }

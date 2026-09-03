@@ -84,6 +84,7 @@ function SheetPage({
   const of = String(total).padStart(2, "0");
   const isLast = index === total;
   return (
+    <div className="sheet-page-frame">
     <article className="sheet-page relative flex flex-col overflow-hidden text-on-surface">
       <div className="flex flex-col flex-1 min-h-0 px-[18mm] pt-[18mm] pb-[16mm]">
         <div className="flex items-center justify-between gap-6 shrink-0 mb-9">
@@ -130,6 +131,7 @@ function SheetPage({
         </div>
       </div>
     </article>
+    </div>
   );
 }
 

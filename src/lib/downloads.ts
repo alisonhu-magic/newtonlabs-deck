@@ -5,6 +5,7 @@ import { asset } from "./asset";
 export type DownloadLink = {
   href: string;
   label: string;
+  shortLabel: string;
   filename: string;
 };
 
@@ -34,6 +35,7 @@ export function pdfDownload(
   return {
     href: file.href,
     label: `${kindLabel} · ${humanSize(file.bytes)}`,
+    shortLabel: kindLabel,
     filename: path.basename(filePath),
   };
 }

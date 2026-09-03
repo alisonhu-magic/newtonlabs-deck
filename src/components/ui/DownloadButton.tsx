@@ -5,19 +5,29 @@ const btn =
 
 export default function DownloadButton({
   file,
+  compact = false,
   className = "",
 }: {
   file: DownloadLink;
+  compact?: boolean;
   className?: string;
 }) {
   return (
     <a
       href={file.href}
       download={file.filename}
+      title={file.label}
       className={`${btn} ${className}`}
     >
       <DownloadIcon />
-      {file.label}
+      {compact ? (
+        file.shortLabel
+      ) : (
+        <>
+          <span className="sm:hidden">{file.shortLabel}</span>
+          <span className="hidden sm:inline">{file.label}</span>
+        </>
+      )}
     </a>
   );
 }

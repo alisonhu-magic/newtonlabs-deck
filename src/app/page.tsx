@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-surface text-on-surface">
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-16 px-10 py-20">
+      <div className="mx-auto flex w-full max-w-3xl flex-col gap-16 px-6 py-16 sm:px-10 sm:py-20">
         <header className="flex flex-col gap-3">
           <h1 className="text-headline text-on-surface">Decks</h1>
           <p className="text-body text-on-surface-muted">
@@ -77,8 +77,8 @@ function CatalogCard({
   downloads: DownloadLink[];
 }) {
   return (
-    <div className="flex items-start justify-between gap-6 rounded-md border border-surface-alt px-6 py-5">
-      <div className="flex flex-col gap-2 min-w-0">
+    <div className="flex flex-col gap-4 rounded-md border border-surface-alt px-5 py-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6 sm:px-6">
+      <div className="flex flex-col gap-2 min-w-0 flex-1">
         <Link
           href={href}
           className="text-ui text-on-surface rounded-md underline-offset-4 hover:underline"
@@ -90,9 +90,9 @@ function CatalogCard({
         <p className="text-label text-on-surface-subtle">{ticket}</p>
       </div>
       {downloads.length > 0 && (
-        <div className="flex flex-col items-end gap-2 shrink-0">
+        <div className="flex flex-wrap gap-2 sm:flex-col sm:items-end sm:shrink-0">
           {downloads.map((file) => (
-            <DownloadButton key={file.href} file={file} />
+            <DownloadButton key={file.href} file={file} compact />
           ))}
         </div>
       )}
