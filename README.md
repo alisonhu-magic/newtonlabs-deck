@@ -10,7 +10,8 @@ pnpm dev
 ```
 
 - Catalog: [http://localhost:3000](http://localhost:3000)
-- Present a deck: [http://localhost:3000/d/fund-admins](http://localhost:3000/d/fund-admins)
+- Preview a deck: [http://localhost:3000/d/fund-admins](http://localhost:3000/d/fund-admins)
+- Present a deck: [http://localhost:3000/d/fund-admins/present](http://localhost:3000/d/fund-admins/present)
 - Curator one-sheet: [http://localhost:3000/sheet](http://localhost:3000/sheet)
 
 Hosted: [https://alisonhu-magic.github.io/newtonlabs-deck/](https://alisonhu-magic.github.io/newtonlabs-deck/)

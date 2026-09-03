@@ -6,8 +6,7 @@ import {
   isDeckSlug,
   type DeckSlug,
 } from "@decks/catalog";
-import DeckViewer from "./viewer";
-import { pdfDownload, type DownloadLink } from "@/lib/downloads";
+import DeckViewer from "../viewer";
 
 type PageProps = {
   params: Promise<{ deck: string }>;
@@ -24,18 +23,13 @@ export async function generateMetadata({
   if (!isDeckSlug(slug)) return { title: "Deck not found" };
   const listing = getDeckListing(slug);
   return {
-    title: listing.title,
+    title: `${listing.title} · Present`,
     robots: { index: false, follow: false },
   };
 }
 
-export default async function DeckPage({ params }: PageProps) {
+export default async function PresentPage({ params }: PageProps) {
   const { deck: slug } = await params;
   if (!isDeckSlug(slug)) notFound();
-  const listing = getDeckListing(slug as DeckSlug);
-  const downloads = [
-    pdfDownload(listing.downloads.full, "full"),
-    pdfDownload(listing.downloads.compressed, "compressed"),
-  ].filter((d): d is DownloadLink => d !== null);
-  return <DeckViewer slug={slug as DeckSlug} downloads={downloads} />;
+  return <DeckViewer slug={slug as DeckSlug} mode="present" />;
 }

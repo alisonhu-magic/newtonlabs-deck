@@ -9,6 +9,32 @@
  *   label        18px  chrome, badges      (text-xs aliases this)
  */
 
+.preview-desk {
+  --preview-w: min(1200px, calc(100vw - 3rem));
+  background: var(--color-surface-alt-subtle);
+}
+
+.preview-chrome {
+  background-color: color-mix(
+    in srgb,
+    var(--color-on-surface) 5%,
+    var(--color-surface)
+  );
+}
+
+.deck-preview-frame {
+  width: var(--preview-w);
+  height: calc(var(--preview-w) * 1080 / 1920);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--color-on-surface) 8%, transparent);
+}
+
+.deck-preview-frame .deck-slide {
+  transform-origin: top left;
+  transform: scale(calc(var(--preview-w) / 1920px));
+}
+
 .deck-active body > .fixed.z-50,
 .deck-active footer,
 .deck-active .fixed.z-\[60\] {
@@ -72,6 +98,30 @@
   html,
   body {
     background: var(--color-surface) !important;
+  }
+
+  .preview-desk {
+    display: block !important;
+    background: transparent !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  .preview-chrome {
+    display: none !important;
+  }
+
+  .deck-preview-frame {
+    box-shadow: none !important;
+    width: 1920px !important;
+    height: 1080px !important;
+    overflow: visible !important;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .deck-preview-frame .deck-slide {
+    transform: none !important;
   }
 
   .deck-app {

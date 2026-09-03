@@ -1,11 +1,33 @@
 import Link from "next/link";
-import { deckListings, type DeckListing } from "@decks/catalog";
+import { deckListings } from "@decks/catalog";
 import { sheetMeta } from "@/app/sheet/content";
+import DownloadButton from "@/components/ui/DownloadButton";
 import { pdfDownload, type DownloadLink } from "@/lib/downloads";
 
 export default function Home() {
-  const active = deckListings.filter((d) => d.status === "active");
-  const archived = deckListings.filter((d) => d.status === "archived");
+  const items = [
+    {
+      key: "sheet",
+      href: sheetMeta.href,
+      title: sheetMeta.title,
+      subtitle: sheetMeta.subtitle,
+      ticket: sheetMeta.ticket,
+      meta: "A4",
+      downloads: [pdfDownload(sheetMeta.downloads.full, "pdf")],
+    },
+    ...deckListings.map((deck) => ({
+      key: deck.slug,
+      href: `/d/${deck.slug}`,
+      title: deck.title,
+      subtitle: deck.subtitle,
+      ticket: deck.ticket,
+      meta: `${deck.slideCount} slides`,
+      downloads: [
+        pdfDownload(deck.downloads.full, "full"),
+        pdfDownload(deck.downloads.compressed, "compressed"),
+      ],
+    })),
+  ];
 
   return (
     <main className="min-h-screen bg-surface text-on-surface">
@@ -18,70 +40,24 @@ export default function Home() {
           </p>
         </header>
 
-        <SheetGroup />
-        <DeckGroup title="Active" decks={active} />
-        {archived.length > 0 && <DeckGroup title="Archived" decks={archived} />}
-      </div>
-    </main>
-  );
-}
-
-function SheetGroup() {
-  const downloads = [
-    pdfDownload(sheetMeta.downloads.full, "pdf"),
-  ].filter((d): d is DownloadLink => d !== null);
-
-  return (
-    <section className="flex flex-col gap-6">
-      <h2 className="text-label text-on-surface-subtle">Sheets</h2>
-      <ul className="flex flex-col gap-4">
-        <li>
-          <CatalogCard
-            href={sheetMeta.href}
-            title={sheetMeta.title}
-            subtitle={sheetMeta.subtitle}
-            ticket={sheetMeta.ticket}
-            meta="A4"
-            downloads={downloads}
-          />
-        </li>
-      </ul>
-    </section>
-  );
-}
-
-function DeckGroup({
-  title,
-  decks,
-}: {
-  title: string;
-  decks: readonly DeckListing[];
-}) {
-  if (decks.length === 0) return null;
-  return (
-    <section className="flex flex-col gap-6">
-      <h2 className="text-label text-on-surface-subtle">{title}</h2>
-      <ul className="flex flex-col gap-4">
-        {decks.map((deck) => {
-          const downloads = [
-            pdfDownload(deck.downloads.full, "full"),
-            pdfDownload(deck.downloads.compressed, "compressed"),
-          ].filter((d): d is DownloadLink => d !== null);
-          return (
-            <li key={deck.slug}>
+        <ul className="flex flex-col gap-4">
+          {items.map((item) => (
+            <li key={item.key}>
               <CatalogCard
-                href={`/d/${deck.slug}`}
-                title={deck.title}
-                subtitle={deck.subtitle}
-                ticket={deck.ticket}
-                meta={`${deck.slideCount} slides`}
-                downloads={downloads}
+                href={item.href}
+                title={item.title}
+                subtitle={item.subtitle}
+                ticket={item.ticket}
+                meta={item.meta}
+                downloads={item.downloads.filter(
+                  (d): d is DownloadLink => d !== null,
+                )}
               />
             </li>
-          );
-        })}
-      </ul>
-    </section>
+          ))}
+        </ul>
+      </div>
+    </main>
   );
 }
 
@@ -101,28 +77,25 @@ function CatalogCard({
   downloads: DownloadLink[];
 }) {
   return (
-    <div className="flex flex-col gap-2 rounded-md border border-surface-alt px-6 py-5">
-      <Link
-        href={href}
-        className="text-ui text-on-surface rounded-md underline-offset-4 hover:underline"
-      >
-        {title}
-      </Link>
-      <div className="flex flex-wrap items-center gap-2">
+    <div className="flex items-start justify-between gap-6 rounded-md border border-surface-alt px-6 py-5">
+      <div className="flex flex-col gap-2 min-w-0">
+        <Link
+          href={href}
+          className="text-ui text-on-surface rounded-md underline-offset-4 hover:underline"
+        >
+          {title}
+        </Link>
         <p className="text-label text-on-surface-subtle">{meta}</p>
-        {downloads.map((file) => (
-          <a
-            key={file.href}
-            href={file.href}
-            download={file.filename}
-            className="inline-flex items-center rounded-md border border-surface-alt px-2.5 pt-[7px] pb-[5px] text-label text-on-surface hover:border-accent"
-          >
-            {file.label}
-          </a>
-        ))}
+        <p className="text-body-sm text-on-surface-muted">{subtitle}</p>
+        <p className="text-label text-on-surface-subtle">{ticket}</p>
       </div>
-      <p className="text-body-sm text-on-surface-muted">{subtitle}</p>
-      <p className="text-label text-on-surface-subtle">{ticket}</p>
+      {downloads.length > 0 && (
+        <div className="flex flex-col items-end gap-2 shrink-0">
+          {downloads.map((file) => (
+            <DownloadButton key={file.href} file={file} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

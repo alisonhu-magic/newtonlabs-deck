@@ -1,6 +1,6 @@
 /**
- * Curator sales one-sheet (NEWT-2469). Copy follows the 20 Aug original;
- * layout is A4, card + icon, no diagrams.
+ * Curator sales one-sheet (NEWT-2469). Copy is verbatim from Jeff’s
+ * Google Doc; layout is A4, card + icon, no diagrams.
  */
 
 export const sheetMeta = {
@@ -15,22 +15,24 @@ export const sheetMeta = {
 
 export const prove = {
   label: "Newton for Curators",
-  headline: "Policies you can prove.",
+  headline: "Policies You Can Prove",
   body: "Today, a curator’s risk logic has to live in one of two places. Onchain, where it’s verifiable, but constrained by what a smart contract can express. Offchain, where it can express anything, but nobody outside the curator can confirm it’s enforced.",
   closer:
     "Newton lets a curator condition any vault operation on any policy, referencing onchain or offchain data at evaluation, with every result attested onchain so anyone can verify it independently.",
   cards: [
     {
       iconUrl: "/assets/icons/seal-check.svg",
-      title: "Verifiable policy enforcement",
-      description:
+      title: "Verifiable Policy Enforcement",
+      description: [
         "Policies are evaluated by Newton’s operator network, not by the curator or the platform. Each evaluation produces an onchain attestation. An LP or auditor can confirm what was enforced without asking Newton or the curator for anything. Policy versions are new onchain artifacts rather than overwrites, so the history of what was in force is permanent, and any changes are public.",
+        "Every curator gets a transparency dashboard to share with LPs. It shows the policies in force and each enforcement decision against vault operations as they settle.",
+      ],
     },
     {
       iconUrl: "/assets/icons/package.svg",
-      title: "Growing policy library",
+      title: "Growing Policy library",
       description:
-        "A library of off-the-shelf policies draws on a growing variety of data providers across security, compliance, and market risk. Curators compose these into a stack, extend them in Rego, or write their own. Where a data provider can return a pass or fail signal, sensitive data never leaves their systems. Where the policy requires the underlying data to resolve, evaluation happens inside a TEE.",
+        "A library of off-the-shelf policies draws on a growing variety of data providers across security, compliance, and market risk. Curators compose these into a stack, extend them in Rego, or write their own. Where a data provider can return a pass or fail signal, sensitive data never leaves their systems. Where the policy requires the underlying data to resolve, evaluation happens inside a TEE, so operators resolve the policy without seeing the input.",
     },
     {
       iconUrl: "/assets/icons/broadcast.svg",
@@ -39,18 +41,12 @@ export const prove = {
         "Update a policy and every vault referencing it picks up the new version. No governance cycle, no redeployment, no new audit. Write a stack once and enforce it across vaults, chains, and platforms.",
     },
   ],
-  dashboard: {
-    iconUrl: "/assets/icons/chart-line-up.svg",
-    title: "A dashboard every LP can use",
-    description:
-      "Every curator gets a transparency dashboard to share with LPs. It shows the policies in force and each enforcement decision against vault operations as they settle.",
-  },
 } as const;
 
 export const paths = {
-  label: "Three Integration Paths",
-  headline: "Integrate at the contract, in front of it, or at launch.",
-  body: "A curator can integrate Newton at the contract level or in front of it — or at the moment a vault is deployed. Policy evaluation completes in under two seconds on each path.",
+  label: "Newton for Curators",
+  headline: "Three integration paths",
+  body: "A curator can integrate Newton at the contract level or in front of it – or at the moment a vault is deployed. Policy evaluation completes in under two seconds on each path.",
   cards: [
     {
       iconUrl: "/assets/icons/gear-six.svg",
@@ -61,10 +57,10 @@ export const paths = {
     },
     {
       iconUrl: "/assets/icons/shield-check.svg",
-      eyebrow: "No redeploy",
+      eyebrow: "Newton Shield",
       title: "In front of the wallet",
       description:
-        "Deploy Newton Shield and delegate curator control to it. Shield evaluates every instruction before it reaches the vault, so nothing settles unless it passes. Controls already enforced in your wallet, like signer quorum, become independently verifiable rather than something an LP has to take on faith. Policies your wallet cannot express are added in the same step. No change to the vault contract, no redeployment, no new audit — the path for vaults that are already live.",
+        "Deploy Newton Shield and delegate curator control to it. Shield evaluates every instruction before it reaches the vault, so nothing settles unless it passes. Controls already enforced in your wallet, like signer quorum, become independently verifiable rather than something an LP has to take on faith. Policies your wallet cannot express are added in the same step. No change to the vault contract, no redeployment, no new audit, which makes this the path for vaults that are already live.",
     },
     {
       iconUrl: "/assets/icons/flask.svg",

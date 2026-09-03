@@ -2,6 +2,7 @@
  * cannot blow headlines to 80px inside a 210mm page. */
 
 .sheet-desk {
+  --preview-w: 210mm;
   background: var(--color-surface-alt-subtle);
 }
 
@@ -27,6 +28,8 @@
   font-size: 12.5px;
   line-height: 1.45;
   letter-spacing: 0.2px;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .sheet-page .text-quote {
@@ -72,9 +75,5 @@
   .sheet-page:last-child {
     break-after: auto;
     page-break-after: auto;
-  }
-
-  .sheet-hint {
-    display: none !important;
   }
 }

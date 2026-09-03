@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { siteConfig } from "@/app/site.config";
-import { asset } from "@/lib/asset";
 import Badge from "@/components/ui/Badge";
+import IconMark from "@/components/ui/IconMark";
+import PreviewChrome from "@/components/ui/PreviewChrome";
+import { pdfDownload, type DownloadLink } from "@/lib/downloads";
 import { paths, prove, sheetMeta } from "./content";
 import "./sheet.css";
 
@@ -14,40 +16,38 @@ export const metadata: Metadata = {
 const { nav } = siteConfig;
 
 export default function CuratorSheetPage() {
+  const downloads = [pdfDownload(sheetMeta.downloads.full, "pdf")].filter(
+    (d): d is DownloadLink => d !== null,
+  );
+
   return (
-    <main className="sheet-desk min-h-screen flex flex-col items-center gap-12 px-6 py-16">
-      <p className="sheet-hint text-label text-on-surface-subtle print:hidden">
-        A4 · ⌘P to save as PDF
-      </p>
+    <main className="preview-desk sheet-desk min-h-screen flex flex-col items-center">
+      <PreviewChrome downloads={downloads} />
+      <div className="flex w-full flex-col items-center gap-12 px-6 py-12">
       <SheetPage index={1} total={2} label={prove.label}>
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-4">
           <h1 className="text-headline text-on-surface">{prove.headline}</h1>
           <p className="text-body-sm text-on-surface-muted">{prove.body}</p>
           <p className="text-body-sm text-on-surface-muted">{prove.closer}</p>
         </div>
-        <div className="grid grid-cols-3 gap-3 flex-1 min-h-0">
+        <div className="flex flex-col gap-5">
           {prove.cards.map((card) => (
             <SheetCard
               key={card.title}
               icon={card.iconUrl}
               title={card.title}
               description={card.description}
+              horizontal
             />
           ))}
         </div>
-        <SheetCard
-          icon={prove.dashboard.iconUrl}
-          title={prove.dashboard.title}
-          description={prove.dashboard.description}
-          horizontal
-        />
       </SheetPage>
       <SheetPage index={2} total={2} label={paths.label}>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           <h1 className="text-headline text-on-surface">{paths.headline}</h1>
           <p className="text-body-sm text-on-surface-muted">{paths.body}</p>
         </div>
-        <div className="grid grid-cols-3 gap-3 flex-1 min-h-0">
+        <div className="flex flex-col gap-6">
           {paths.cards.map((card) => (
             <SheetCard
               key={card.title}
@@ -55,15 +55,16 @@ export default function CuratorSheetPage() {
               eyebrow={card.eyebrow}
               title={card.title}
               description={card.description}
+              horizontal
             />
           ))}
         </div>
-        <div className="flex flex-col gap-2 rounded-md border border-accent/30 bg-accent/5 px-5 py-4">
+        <div className="flex flex-col gap-2 rounded-md border border-accent/30 bg-accent/5 px-6 py-5">
           <p className="text-label text-on-surface-muted">{paths.why.title}</p>
           <p className="text-quote text-on-surface">{paths.why.description}</p>
         </div>
-        <p className="text-body-sm text-on-surface-subtle">{paths.about}</p>
       </SheetPage>
+      </div>
     </main>
   );
 }
@@ -81,20 +82,28 @@ function SheetPage({
 }) {
   const number = String(index).padStart(2, "0");
   const of = String(total).padStart(2, "0");
+  const isLast = index === total;
   return (
     <article className="sheet-page relative flex flex-col overflow-hidden text-on-surface">
-      <div className="flex flex-col flex-1 min-h-0 px-[16mm] pt-[14mm] pb-[12mm]">
-        <div className="flex items-center justify-between gap-6 shrink-0 mb-7">
+      <div className="flex flex-col flex-1 min-h-0 px-[18mm] pt-[18mm] pb-[16mm]">
+        <div className="flex items-center justify-between gap-6 shrink-0 mb-9">
           <p className="text-label text-on-surface">{label}</p>
           <p className="text-label tabular-nums text-on-surface-subtle">
             <span className="text-accent">{number}</span> / {of}
           </p>
         </div>
-        <div className="flex flex-col gap-5 flex-1 min-h-0">{children}</div>
-        <div className="flex items-center justify-between gap-6 shrink-0 mt-6">
-          <LogoLockup />
-          {index === 2 ? (
-            <div className="flex items-center gap-4">
+        <div className="flex flex-col gap-8 flex-1 min-h-0">{children}</div>
+        <div className="flex items-start justify-between gap-8 shrink-0 mt-auto pt-8">
+          <div className="flex flex-col gap-3 min-w-0 flex-1">
+            <LogoLockup />
+            {isLast && (
+              <p className="text-body-sm text-on-surface-subtle text-left">
+                {paths.about}
+              </p>
+            )}
+          </div>
+          {isLast ? (
+            <div className="flex items-center gap-4 shrink-0">
               {paths.links.map((link) => (
                 <a
                   key={link.href}
@@ -125,49 +134,45 @@ function SheetCard({
 }: {
   icon: string;
   eyebrow?: string;
-  title: string;
-  description: string;
+  title?: string;
+  description: string | readonly string[];
   horizontal?: boolean;
 }) {
-  const iconMark = (
-    <div className="size-10 rounded-full border border-on-surface flex items-center justify-center p-2.5 shrink-0">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={asset(icon)} alt="" className="w-4 h-4 object-contain theme-icon" />
+  const iconMark = <IconMark src={icon} tone="accent" />;
+  const paragraphs = typeof description === "string" ? [description] : description;
+  const copy = (
+    <div className={`flex flex-col min-w-0 ${horizontal ? "gap-1.5 flex-1" : "gap-1.5 w-full"}`}>
+      {title && <h2 className="text-ui text-on-surface">{title}</h2>}
+      {paragraphs.map((text) => (
+        <p key={text.slice(0, 32)} className="text-body-sm text-on-surface-muted">
+          {text}
+        </p>
+      ))}
     </div>
   );
 
-  if (horizontal) {
-    return (
-      <div className="rounded-md border border-surface-alt px-5 py-4 flex items-start gap-4 shrink-0">
-        {iconMark}
-        <div className="flex flex-col gap-1 min-w-0 pt-0.5">
-          <h2 className="text-ui text-on-surface">{title}</h2>
-          <p className="text-body-sm text-on-surface-muted">{description}</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div
-      className={`relative h-full w-full min-w-0 rounded-md border border-surface-alt flex flex-col gap-4 items-start ${
-        eyebrow ? "px-5 pb-5 pt-7" : "p-5"
+      className={`relative rounded-md border border-surface-alt ${
+        horizontal
+          ? `flex items-start gap-5 shrink-0 px-6 ${eyebrow ? "pt-6 pb-5" : "py-5"}`
+          : `h-full w-full min-w-0 flex flex-col gap-4 items-start ${
+              eyebrow ? "px-5 pb-5 pt-7" : "p-5"
+            }`
       }`}
     >
       {eyebrow && (
         <Badge
           variant="outline"
+          tone="accent"
           size="sm"
-          className="absolute -top-2.5 right-4 rounded-full bg-surface"
+          className="absolute -top-2.5 right-4 rounded-full"
         >
           {eyebrow}
         </Badge>
       )}
       {iconMark}
-      <div className="flex flex-col gap-1.5 w-full min-w-0">
-        <h2 className="text-ui text-on-surface">{title}</h2>
-        <p className="text-body-sm text-on-surface-muted">{description}</p>
-      </div>
+      {copy}
     </div>
   );
 }
