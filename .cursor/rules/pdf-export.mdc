@@ -1,0 +1,38 @@
+---
+description: Export downloadable PDFs only at ship time, not while iterating
+alwaysApply: true
+---
+
+# PDF export (ship-time only)
+
+HTML is the source of truth. `public/downloads/*.pdf` is a snapshot for the
+catalog / preview download buttons.
+
+## While designing
+
+Do **not** run `export:sheet` or `export:pdf` after layout, copy, or style
+tweaks. Do not commit a PDF just to keep it “in sync.”
+
+## When the user says commit, push, or ship
+
+If sheet or deck files changed since the last export, regenerate the matching
+PDF and include it in that commit.
+
+Sheet (`src/app/sheet/**` or `/sheet` route):
+
+```bash
+# Use the port `pnpm dev` is actually on (often 3001)
+SHEET_URL=http://127.0.0.1:PORT/sheet/ pnpm export:sheet
+```
+
+Writes `public/downloads/curators.pdf`. Confirm it is **2 A4 pages** (print CSS
+must zero `.sheet-pages` padding/gap or Playwright emits extra blank pages).
+
+Decks (`decks/**`, `src/app/d/**`) — only if those files changed. These are
+slow and large; skip unless the user is shipping a deck:
+
+```bash
+pnpm export:pdf:fund-admins   # or export:pdf:aon
+```
+
+If nothing visual changed (rule-only, copy in a comment, CI), skip export.

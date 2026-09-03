@@ -117,7 +117,14 @@ function SheetPage({
               ))}
             </div>
           ) : (
-            <p className="text-label text-on-surface-subtle">newton.xyz</p>
+            <a
+              href="https://newton.xyz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-label text-on-surface-subtle rounded-md underline underline-offset-4"
+            >
+              newton.xyz
+            </a>
           )}
         </div>
       </div>
