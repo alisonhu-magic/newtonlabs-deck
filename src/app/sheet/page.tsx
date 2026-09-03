@@ -93,38 +93,39 @@ function SheetPage({
           </p>
         </div>
         <div className="flex flex-col gap-8 flex-1 min-h-0">{children}</div>
-        <div className="flex items-start justify-between gap-8 shrink-0 mt-auto pt-8">
-          <div className="flex flex-col gap-3 min-w-0 flex-1">
+        <div className="flex flex-col gap-3 shrink-0 mt-auto border-t border-surface-alt pt-6">
+          <div className="flex items-center justify-between gap-6">
             <LogoLockup />
-            {isLast && (
-              <p className="text-body-sm text-on-surface-subtle text-left">
-                {paths.about}
-              </p>
+            {!isLast && (
+              <a
+                href="https://newton.xyz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-label text-on-surface-subtle rounded-md underline underline-offset-4"
+              >
+                newton.xyz
+              </a>
             )}
           </div>
-          {isLast ? (
-            <div className="flex items-center gap-4 shrink-0">
-              {paths.links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-body-sm text-on-surface-muted rounded-md underline underline-offset-4"
-                >
-                  {link.label}
-                </a>
-              ))}
+          {isLast && (
+            <div className="flex items-end justify-between gap-8">
+              <p className="text-body-sm text-on-surface-subtle text-left flex-1 min-w-0">
+                {paths.about}
+              </p>
+              <div className="flex items-center gap-4 shrink-0">
+                {paths.links.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-body-sm text-on-surface-muted rounded-md underline underline-offset-4"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
-          ) : (
-            <a
-              href="https://newton.xyz/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-label text-on-surface-subtle rounded-md underline underline-offset-4"
-            >
-              newton.xyz
-            </a>
           )}
         </div>
       </div>
