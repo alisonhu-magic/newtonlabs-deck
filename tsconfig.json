@@ -19,7 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@decks": ["./decks/index.ts"],
+      "@decks/*": ["./decks/*"]
     }
   },
   "include": [

@@ -3,9 +3,10 @@ import os from "node:os";
 import path from "node:path";
 import { mkdirSync } from "node:fs";
 
-const URL = process.env.DECK_URL ?? "http://127.0.0.1:4188/";
-const TOTAL = Number(process.env.SLIDES ?? 15);
-const OUT = process.env.HTML_OUT ?? "output/html_ref";
+const DECK = process.env.DECK ?? "fund-admins";
+const URL = process.env.DECK_URL ?? `http://127.0.0.1:4188/d/${DECK}/`;
+const TOTAL = Number(process.env.SLIDES ?? 17);
+const OUT = process.env.HTML_OUT ?? `output/html_ref/${DECK}`;
 const EX = path.join(
   os.homedir(),
   "Library/Caches/ms-playwright/chromium-1223/chrome-mac-arm64",

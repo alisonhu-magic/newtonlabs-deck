@@ -24,7 +24,7 @@ export default function DeckTable({
   rows: readonly (readonly string[])[];
   dense?: boolean;
 }) {
-  const cellType = dense ? "text-body-sm" : "text-body";
+  const cellType = "text-body-sm";
   const cellPad = dense ? "py-3" : "py-4";
 
   return (

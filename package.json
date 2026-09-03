@@ -1,5 +1,5 @@
 {
-  "name": "aon-deck",
+  "name": "newtonlabs-deck",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,6 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "export:pdf": "node scripts/export-pdf.mjs",
+    "export:pdf:compressed": "node scripts/export-pdf.mjs && node scripts/compress-pdf.mjs",
+    "compress:pdf": "node scripts/compress-pdf.mjs",
+    "export:pdf:aon": "DECK=aon node scripts/export-pdf.mjs",
+    "export:pdf:fund-admins": "DECK=fund-admins node scripts/export-pdf.mjs",
     "export:pptx": "node scripts/export-pptx.mjs",
     "export:pptx:keynote-pdf": "osascript scripts/keynote-render.applescript && (cd output && pdftoppm -png -r 96 keynote.pdf keynote)",
     "export:pptx:verify": "node scripts/shoot-html.mjs && npm run export:pptx:keynote-pdf && PPTX_SRC=keynote node scripts/compare.mjs"

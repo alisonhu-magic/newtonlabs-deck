@@ -6,7 +6,7 @@ const sharp = require(
   path.join(process.cwd(), "node_modules/.pnpm/sharp@0.34.5/node_modules/sharp"),
 );
 
-const TOTAL = Number(process.env.SLIDES ?? 15);
+const TOTAL = Number(process.env.SLIDES ?? 17);
 const HTML = "output/html_ref";
 // Which pptx render to compare against: keynote (true target) or render (LibreOffice)
 const SRC = process.env.PPTX_SRC ?? "keynote"; // "keynote" | "render"

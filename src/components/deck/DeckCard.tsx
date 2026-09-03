@@ -4,25 +4,34 @@ import Badge from "@/components/ui/Badge";
 /** Static FeatureCard chrome for the deck — no hover inversion. */
 export default function DeckCard({
   icon,
+  eyebrow,
   title,
   description,
   badge,
-  dense = false,
   media,
   stretch = false,
 }: {
   icon?: string;
+  eyebrow?: string;
   title: string;
   description: string;
   badge?: string;
-  dense?: boolean;
   media?: ReactNode;
   stretch?: boolean;
 }) {
   return (
     <div
-      className={`${media ? "h-full" : `${stretch ? "h-full" : "self-start"} border border-surface-alt p-8`} w-full min-w-0 rounded-md flex flex-col gap-8 items-start`}
+      className={`${media ? "h-full" : `${stretch ? "h-full" : "self-start"} border border-surface-alt ${eyebrow ? "px-8 pb-8 pt-12" : "p-8"}`} relative w-full min-w-0 rounded-md flex flex-col gap-8 items-start`}
     >
+      {eyebrow && (
+        <Badge
+          variant="outline"
+          size="sm"
+          className="absolute -top-3 right-6 rounded-full bg-surface"
+        >
+          {eyebrow}
+        </Badge>
+      )}
       {media ? (
         <div className="w-full shrink-0">{media}</div>
       ) : icon || badge ? (
@@ -54,10 +63,10 @@ export default function DeckCard({
         </div>
       ) : null}
       <div className="flex flex-col gap-2 w-full shrink-0">
-        <h3 className="text-subheadline text-on-surface">
+        <h3 className="text-ui text-on-surface">
           {title}
         </h3>
-        <p className={`${dense ? "text-body-sm" : "text-body"} text-on-surface-muted`}>
+        <p className="text-body-sm text-on-surface-muted">
           {description}
         </p>
       </div>

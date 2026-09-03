@@ -1,12 +1,45 @@
-# Newton × Aon deck
+# Newton Labs Decks
 
-Standalone 1920×1080 presentation. Split out of the marketing site so it can be designed without that repo’s weight.
+Multi-deck presentation tool. Shared shell and design system live on `main`;
+each ticket ships as its own folder under `decks/` so merging never replaces a
+sibling deck.
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). Arrow keys or scroll to advance. ⌘P exports PDF.
+- Catalog: [http://localhost:3000](http://localhost:3000)
+- Present a deck: [http://localhost:3000/d/fund-admins](http://localhost:3000/d/fund-admins)
 
-Copy lives in `src/app/content.ts`. Design tokens are `src/app/globals.css` (Newton Labs system).
+Arrow keys or scroll to advance. PDF export:
+
+```bash
+DECK=fund-admins pnpm export:pdf:compressed
+DECK=aon pnpm export:pdf:compressed
+```
+
+Outputs land in `exports/<deck>.pdf` and `exports/<deck>-compressed.pdf`.
+
+## Layout
+
+```
+decks/
+  index.ts              # registry
+  fund-admins/          # NEWT-2517
+    meta.ts
+    content.ts
+    slides.tsx
+  aon/                  # NEWT-2470 (archived)
+    …
+src/components/deck/    # shared shell
+src/app/d/[deck]/       # presenter route
+```
+
+## New ticket / deck
+
+1. Branch from `main`.
+2. Copy a close peer under `decks/<slug>/` (or start from an empty content + slides pair).
+3. Register it in `decks/index.ts`.
+4. Build against `/d/<slug>`.
+5. Merge the folder — other decks stay untouched.
