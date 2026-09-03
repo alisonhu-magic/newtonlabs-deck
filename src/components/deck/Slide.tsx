@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import FieldCanvas, { HERO_FIELD } from "@/components/ui/FieldCanvas";
 import { siteConfig } from "@/app/site.config";
-import { deckMeta } from "@/app/content";
+import type { DeckMeta } from "./types";
 
 const { nav } = siteConfig;
 
@@ -22,6 +22,7 @@ export default function Slide({
   total,
   variant = "content",
   field = false,
+  meta,
   children,
 }: {
   label?: string;
@@ -29,6 +30,7 @@ export default function Slide({
   total: number;
   variant?: "hero" | "content";
   field?: boolean;
+  meta: DeckMeta;
   children: ReactNode;
 }) {
   const isHero = variant === "hero";
@@ -40,11 +42,11 @@ export default function Slide({
     <article
       className="deck-slide relative flex flex-col overflow-hidden bg-surface shrink-0"
       style={{ width: STAGE_W, height: STAGE_H }}
-      aria-label={label ?? deckMeta.title}
+      aria-label={label ?? meta.title}
     >
       {showField && (
         <>
-          <FieldCanvas config={TITLE_FIELD} className="absolute inset-0 z-0" />
+          <FieldCanvas config={TITLE_FIELD} className="pointer-events-none absolute inset-0 z-0" />
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 z-[1]"
@@ -74,7 +76,7 @@ export default function Slide({
           {isHero ? (
             <span />
           ) : (
-            <p className="text-label">{deckMeta.preparedFor}</p>
+            <p className="text-label">{meta.preparedFor}</p>
           )}
         </footer>
       </div>

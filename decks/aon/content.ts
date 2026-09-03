@@ -1,7 +1,7 @@
 /**
- * Newton × Aon deck copy. Kept next to the route (not site.config) so
- * partner-facing commercial terms don't mix into public marketing config.
- * Source: Newton_x_Aon_Verifiable_Risk_Controls (NEWT-2470).
+ * Newton × Aon deck copy (NEWT-2470). Archived peer under decks/ so later
+ * tickets don't overwrite this template on main.
+ * Source: Newton_x_Aon_Verifiable_Risk_Controls.
  */
 
 export const deckMeta = {

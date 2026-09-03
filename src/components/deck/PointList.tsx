@@ -1,12 +1,8 @@
 /**
- * Reusable vertical stack of "points" — a subheadline title with a body
- * description, using the DeckCard header/body type styles. Spacing between
- * points is configurable via `gapClassName` so it can be tuned per slide.
+ * Each point is a bordered card matching the integration-path treatment.
+ * Spacing between cards is configurable via `gapClassName`.
  *
- * - `numbered` prefixes each title with an accent "N." (matching the Path
- *   step treatment) using the point's `number` when present, else its index.
- * - `dense` uses the smaller supporting body size and a tighter default gap so
- *   longer lists (e.g. 4 steps) fit a half-height column.
+ * - `numbered` prefixes each title with "N." using the point's `number` when present, else its index.
  */
 export type Point = {
   title: string;
@@ -19,21 +15,21 @@ export default function PointList({
   gapClassName,
   className = "",
   numbered = false,
-  dense = false,
 }: {
   points: readonly Point[];
   gapClassName?: string;
   className?: string;
   numbered?: boolean;
-  dense?: boolean;
 }) {
-  const gap = gapClassName ?? (dense ? "gap-8" : "gap-10");
-  const bodyType = dense ? "text-body-sm" : "text-body";
+  const gap = gapClassName ?? "gap-4";
   return (
     <div className={`flex flex-col ${gap} ${className}`}>
       {points.map((point, i) => (
-        <div key={point.title} className="flex flex-col gap-2">
-          <h3 className="text-subheadline text-on-surface">
+        <div
+          key={point.title}
+          className="relative rounded-md border border-surface-alt p-8 flex flex-col gap-3"
+        >
+          <h3 className="text-ui text-on-surface">
             {numbered && (
               <>
                 <span className="text-on-surface">{point.number ?? i + 1}.</span>{" "}
@@ -41,7 +37,7 @@ export default function PointList({
             )}
             {point.title}
           </h3>
-          <p className={`${bodyType} text-on-surface-muted`}>
+          <p className="text-body-sm text-on-surface-muted">
             {point.description}
           </p>
         </div>

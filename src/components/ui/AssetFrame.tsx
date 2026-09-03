@@ -22,7 +22,7 @@ type AssetFrameProps = {
   interactive?: boolean;
   /** Extra classes on the outer frame (e.g. grid spans). */
   className?: string;
-  /** Extra classes on the inner clip box (e.g. `aspect-[3/2]` for galleries). */
+  /** Extra classes on the inner clip box (e.g. `h-full` for fill). */
   innerClassName?: string;
   /** Composed mode: custom inner content (cross-fade stacks, diagrams, etc.). */
   children?: ReactNode;
@@ -34,16 +34,17 @@ type AssetFrameProps = {
  * + soft shadow, wrapping content with an 8px inner radius (outer − 6px
  * border, kept concentric so the corners stay parallel).
  *
- * Colors reuse existing tokens (`surface` for the matte); the shadow matches
- * Dia's `shadow-release-note-asset` exactly.
- *
- * Modes:
- * - `src` + `crop` → image panned/zoomed to fill `aspect` (crops baked-in edges).
- * - `src` alone → a single `object-contain` image with responsive max-height.
- * - `children` → frame chrome only; caller supplies the inner content.
+ * Non-fill frames use a padding-bottom 3:2 box so Chrome print (which drops
+ * `aspect-ratio`) still keeps every frame the same size.
  */
 const FRAME =
-  "w-full overflow-hidden rounded-lg border-[6px] border-surface bg-surface shadow-[0_4.6px_27.6px_0_rgba(0,0,0,0.08),0_0_2.3px_0_rgba(0,0,0,0.25)]";
+  "asset-frame w-full overflow-hidden rounded-lg border-[6px] border-surface bg-surface shadow-[0_4.6px_27.6px_0_rgba(0,0,0,0.08),0_0_2.3px_0_rgba(0,0,0,0.25)]";
+
+function paddingBottomFor(aspect: string) {
+  const [a, b] = aspect.split("/").map((n) => Number(n.trim()));
+  if (!a || !b) return "66.6667%";
+  return `${(b / a) * 100}%`;
+}
 
 export default function AssetFrame({
   src,
@@ -55,11 +56,13 @@ export default function AssetFrame({
   innerClassName = "",
   children,
 }: AssetFrameProps) {
+  const fill = /\bh-full\b/.test(`${className} ${innerClassName}`);
+
   return (
     <div className={`${FRAME} ${className}`}>
       <div
-        className={`relative overflow-hidden rounded-[8px] ${innerClassName}`}
-        style={crop ? { aspectRatio: aspect } : undefined}
+        className={`asset-frame-clip relative overflow-hidden rounded-[8px] w-full ${fill ? "h-full" : ""}`}
+        style={fill ? undefined : { paddingBottom: paddingBottomFor(aspect) }}
       >
         {children ??
           (crop ? (
@@ -67,7 +70,7 @@ export default function AssetFrame({
             <img
               src={src}
               alt={alt}
-              className="absolute max-w-none"
+              className="absolute max-w-none rounded-[8px]"
               style={{ width: crop.w, height: crop.h, left: crop.left, top: crop.top }}
             />
           ) : (
@@ -75,7 +78,7 @@ export default function AssetFrame({
             <img
               src={src}
               alt={alt}
-              className="w-full h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[600px] object-contain rounded-[8px]"
+              className="absolute inset-0 w-full h-full object-cover rounded-[8px]"
             />
           ))}
         {interactive && (

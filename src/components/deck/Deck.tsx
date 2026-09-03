@@ -1,9 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
-import { renderSlide, slides } from "./slides";
-
-const TOTAL = slides.length;
+import type { DeckModule } from "./types";
 
 function subscribeHash(onChange: () => void) {
   window.addEventListener("hashchange", onChange);
@@ -14,14 +12,14 @@ function subscribeHash(onChange: () => void) {
   };
 }
 
-function hashIndex() {
+function hashIndex(total: number) {
   const n = Number(window.location.hash.replace("#", ""));
-  if (Number.isInteger(n) && n >= 1 && n <= TOTAL) return n - 1;
+  if (Number.isInteger(n) && n >= 1 && n <= total) return n - 1;
   return 0;
 }
 
-function setHashIndex(next: number) {
-  const clamped = Math.max(0, Math.min(TOTAL - 1, next));
+function setHashIndex(next: number, total: number) {
+  const clamped = Math.max(0, Math.min(total - 1, next));
   const url = `#${clamped + 1}`;
   if (window.location.hash !== url) {
     history.replaceState(null, "", url);
@@ -29,13 +27,21 @@ function setHashIndex(next: number) {
   }
 }
 
-export default function Deck() {
-  const index = useSyncExternalStore(subscribeHash, hashIndex, () => 0);
+export default function Deck({ slides, renderSlide }: DeckModule) {
+  const total = slides.length;
+  const index = useSyncExternalStore(
+    subscribeHash,
+    () => hashIndex(total),
+    () => 0,
+  );
   const [hint, setHint] = useState(true);
 
-  const go = useCallback((next: number) => {
-    setHashIndex(next);
-  }, []);
+  const go = useCallback(
+    (next: number) => {
+      setHashIndex(next, total);
+    },
+    [total],
+  );
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -57,12 +63,12 @@ export default function Deck() {
         go(0);
       } else if (e.key === "End") {
         e.preventDefault();
-        go(TOTAL - 1);
+        go(total - 1);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [go, index]);
+  }, [go, index, total]);
 
   useEffect(() => {
     let acc = 0;
@@ -96,7 +102,7 @@ export default function Deck() {
               i === index ? "flex" : "hidden print:flex print:break-before-page"
             }
           >
-            {renderSlide(i, TOTAL)}
+            {renderSlide(i, total)}
           </div>
         ))}
       </div>

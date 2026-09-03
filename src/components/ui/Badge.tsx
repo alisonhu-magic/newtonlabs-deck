@@ -11,7 +11,7 @@ type BadgeTone = "default" | "success" | "danger" | "accent";
 
 const variantStyles: Record<BadgeVariant, string> = {
   filled: "bg-surface-alt-subtle text-on-surface-muted",
-  outline: "border border-surface-alt text-on-surface-muted",
+  outline: "border border-surface-alt text-on-surface",
   ghost: "text-on-surface-muted",
 };
 

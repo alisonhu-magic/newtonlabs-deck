@@ -1,11 +1,12 @@
-import type { ReactNode } from "react";
 import Badge from "@/components/ui/Badge";
 import AssetFrame from "@/components/ui/AssetFrame";
 import { siteConfig } from "@/app/site.config";
-import DeckCard from "./DeckCard";
-import PointList from "./PointList";
-import Slide from "./Slide";
+import DeckCard from "@/components/deck/DeckCard";
+import PointList from "@/components/deck/PointList";
+import Slide from "@/components/deck/Slide";
+import type { DeckSlide } from "@/components/deck/types";
 import {
+  deckMeta,
   titleSlide,
   goalSlide,
   problemSlide,
@@ -21,16 +22,9 @@ import {
   pathSlide,
   architectureSlide,
   integrationSlide,
-} from "@/app/content";
+} from "./content";
 
 const { backedBy, nav } = siteConfig;
-
-export type DeckSlide = {
-  label?: string;
-  variant?: "hero" | "content";
-  field?: boolean;
-  render: () => ReactNode;
-};
 
 export const slides: DeckSlide[] = [
   { variant: "hero", render: Title },
@@ -186,7 +180,7 @@ function WhatNewton() {
             key={card.title}
             title={card.title}
             description={card.description}
-            dense
+
             media={
               <DeckFrame
                 src={card.image.src}
@@ -245,7 +239,7 @@ function Consortium() {
             icon={card.iconUrl}
             title={card.title}
             description={card.description}
-            dense
+
             stretch
           />
         ))}
@@ -269,7 +263,7 @@ function Controls() {
             title={card.title}
             description={card.description}
             badge={card.badge}
-            dense
+
           />
         ))}
       </div>
@@ -315,7 +309,7 @@ function WorkingModel() {
             icon={card.iconUrl}
             title={card.title}
             description={card.description}
-            dense
+
             stretch
           />
         ))}
@@ -433,7 +427,7 @@ function Commercial() {
             key={pillar.title}
             title={pillar.title}
             description={pillar.description}
-            dense
+
             stretch
           />
         ))}
@@ -533,7 +527,7 @@ function Architecture() {
         <PointList
           points={architectureSlide.steps}
           numbered
-          dense
+
           className="col-span-6"
         />
         <div className="col-span-6 min-w-0">
@@ -615,6 +609,7 @@ export function renderSlide(index: number, total: number) {
       total={total}
       variant={slide.variant}
       field={slide.field}
+      meta={deckMeta}
     >
       {slide.render()}
     </Slide>

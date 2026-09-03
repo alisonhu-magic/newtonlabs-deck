@@ -33,9 +33,10 @@ const require = createRequire(import.meta.url);
 const PptxGenJS = require("pptxgenjs");
 
 // ── Config ──────────────────────────────────────────────────────────────────
-const URL = process.env.DECK_URL ?? "http://127.0.0.1:4188/";
-const OUT = process.env.OUT ?? "output/deck.pptx";
-const TOTAL = Number(process.env.SLIDES ?? 15);
+const DECK = process.env.DECK ?? "fund-admins";
+const URL = process.env.DECK_URL ?? `http://127.0.0.1:4188/d/${DECK}/`;
+const OUT = process.env.OUT ?? `output/${DECK}.pptx`;
+const TOTAL = Number(process.env.SLIDES ?? 17);
 const SHOT_SCALE = Number(process.env.SHOT_SCALE ?? 3);
 const STAGE_W = 1920;
 const STAGE_H = 1080;
@@ -342,8 +343,8 @@ const page = await browser.newPage({
 const pptx = new PptxGenJS();
 pptx.defineLayout({ name: "W16x9", width: 13.333, height: 7.5 });
 pptx.layout = "W16x9";
-pptx.author = "aon-deck exporter";
-pptx.title = "Newton × Aon — Verifiable Risk Controls";
+pptx.author = "newtonlabs-deck exporter";
+pptx.title = "Newton Labs — Policy Infrastructure for Onchain Finance";
 
 const flattened = new Set();
 const stats = [];

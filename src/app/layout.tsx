@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { deckMeta } from "./content";
 import "./globals.css";
 import "./deck.css";
 
@@ -31,7 +30,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: deckMeta.title,
+  title: {
+    default: "Newton Labs Decks",
+    template: "%s · Newton Labs Decks",
+  },
   robots: { index: false, follow: false },
 };
 
