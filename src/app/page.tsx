@@ -90,9 +90,14 @@ function CatalogCard({
         <p className="text-label text-on-surface-subtle">{ticket}</p>
       </div>
       {downloads.length > 0 && (
-        <div className="flex flex-wrap gap-2 sm:flex-col sm:items-end sm:shrink-0">
+        <div className="flex flex-wrap gap-2 sm:flex-col sm:items-stretch sm:shrink-0">
           {downloads.map((file) => (
-            <DownloadButton key={file.href} file={file} compact />
+            <DownloadButton
+              key={file.href}
+              file={file}
+              compact
+              className="sm:w-full sm:justify-center"
+            />
           ))}
         </div>
       )}
