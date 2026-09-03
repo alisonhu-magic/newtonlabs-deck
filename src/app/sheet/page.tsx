@@ -23,7 +23,7 @@ export default function CuratorSheetPage() {
   return (
     <main className="preview-desk sheet-desk min-h-screen flex flex-col items-center">
       <PreviewChrome downloads={downloads} />
-      <div className="flex w-full flex-col items-center gap-12 px-6 py-12">
+      <div className="sheet-pages flex w-full flex-col items-center gap-12 px-6 py-12">
       <SheetPage index={1} total={2} label={prove.label}>
         <div className="flex flex-col gap-4">
           <h1 className="text-headline text-on-surface">{prove.headline}</h1>
