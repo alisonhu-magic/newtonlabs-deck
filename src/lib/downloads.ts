@@ -23,19 +23,26 @@ function publicFile(filePath: string) {
   return { href: asset(filePath), bytes: statSync(abs).size };
 }
 
-export function pdfDownload(
+export function fileDownload(
   filePath: string | undefined,
-  kind: "full" | "compressed" | "pdf",
+  shortLabel: string,
 ): DownloadLink | null {
   if (!filePath) return null;
   const file = publicFile(filePath);
   if (!file) return null;
-  const kindLabel =
-    kind === "full" ? "Full size" : kind === "compressed" ? "Compressed" : "PDF";
   return {
     href: file.href,
-    label: `${kindLabel} · ${humanSize(file.bytes)}`,
-    shortLabel: kindLabel,
+    label: `${shortLabel} · ${humanSize(file.bytes)}`,
+    shortLabel,
     filename: path.basename(filePath),
   };
+}
+
+export function pdfDownload(
+  filePath: string | undefined,
+  kind: "full" | "compressed" | "pdf",
+): DownloadLink | null {
+  const kindLabel =
+    kind === "full" ? "Full size" : kind === "compressed" ? "Compressed" : "PDF";
+  return fileDownload(filePath, kindLabel);
 }

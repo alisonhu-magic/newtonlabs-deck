@@ -1,0 +1,487 @@
+/* Newton Foundation social canvases. Tokens from foundation-site + Social Figma.
+ * Isolated from Labs globals — do not use bg-surface / text-on-surface here. */
+
+.foundation-social {
+  --fs-surface: #fefdf9;
+  --fs-ink: #010101;
+  --fs-muted: rgba(5, 5, 5, 0.4);
+  --fs-rule: rgba(5, 5, 5, 0.1);
+  --fs-well: #ffffff;
+  --fs-radius: 2px;
+  --fs-serif: var(--font-gt-sectra-fine), Georgia, serif;
+  --fs-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+.social-desk {
+  --sq-preview-w: min(720px, calc(100vw - 3rem));
+  --ls-preview-w: min(960px, calc(100vw - 3rem));
+  --bn-preview-w: min(960px, calc(100vw - 3rem));
+  --preview-w: var(--ls-preview-w);
+}
+
+.fs-pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  padding: 48px 24px 96px;
+}
+
+.fs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: var(--ls-preview-w);
+  max-width: 100%;
+}
+
+.fs-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.fs-sq-frame {
+  width: var(--sq-preview-w);
+  height: var(--sq-preview-w);
+  overflow: hidden;
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--color-on-surface) 8%, transparent);
+}
+
+.fs-ls-frame {
+  width: var(--ls-preview-w);
+  height: calc(var(--ls-preview-w) * 900 / 1600);
+  overflow: hidden;
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--color-on-surface) 8%, transparent);
+}
+
+.fs-bn-frame {
+  width: var(--bn-preview-w);
+  height: calc(var(--bn-preview-w) * 396 / 1584);
+  overflow: hidden;
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--color-on-surface) 8%, transparent);
+}
+
+.fs-canvas {
+  position: relative;
+  box-sizing: border-box;
+  background: var(--fs-surface);
+  color: var(--fs-ink);
+  font-family: var(--fs-sans);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform-origin: top left;
+}
+
+.fs-canvas-sq {
+  width: 1200px;
+  height: 1200px;
+  padding: 80px;
+  gap: 32px;
+  transform: scale(calc(var(--sq-preview-w) / 1200px));
+}
+
+.fs-canvas-ls {
+  width: 1600px;
+  height: 900px;
+  padding: 80px;
+  gap: 32px;
+  transform: scale(calc(var(--ls-preview-w) / 1600px));
+}
+
+.fs-canvas-bn {
+  width: 1584px;
+  height: 396px;
+  padding: 48px;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 48px;
+  transform: scale(calc(var(--bn-preview-w) / 1584px));
+}
+
+.fs-mark {
+  position: absolute;
+  display: block;
+}
+
+.fs-canvas-sq .fs-mark {
+  top: 80px;
+  right: 80px;
+  width: 49px;
+  height: 54px;
+}
+
+.fs-canvas-ls .fs-mark {
+  top: 80px;
+  right: 80px;
+  width: 52px;
+  height: 57px;
+}
+
+.fs-canvas-bn .fs-mark {
+  top: 48px;
+  right: 48px;
+  width: 29px;
+  height: 32px;
+}
+
+.fs-header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-right: 80px;
+}
+
+.fs-canvas-ls .fs-header {
+  gap: 16px;
+  padding-right: 80px;
+}
+
+.fs-chip {
+  background: var(--fs-ink);
+  color: var(--fs-surface);
+  border-radius: var(--fs-radius);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  font: 500 16px/1.1 var(--fs-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.fs-chip-rule {
+  width: 1px;
+  align-self: stretch;
+  margin-block: 0.15em;
+  background: color-mix(in srgb, var(--fs-surface) 40%, transparent);
+}
+
+.fs-canvas-sq .fs-chip {
+  font-size: 22px;
+}
+
+.fs-canvas-ls .fs-chip {
+  padding: 8px 12px;
+  font-size: 20px;
+}
+
+.fs-title {
+  margin: 0;
+  font-family: var(--fs-serif);
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 1.1;
+  text-wrap: pretty;
+}
+
+.fs-canvas-ls .fs-title {
+  font-size: 56px;
+}
+
+.fs-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.fs-rows {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fs-row {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.fs-card {
+  flex: 1 1 0;
+  min-width: 0;
+  box-sizing: border-box;
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-rule);
+  border-radius: var(--fs-radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.fs-logo {
+  background-color: var(--fs-well);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid var(--fs-rule);
+  border-radius: var(--fs-radius);
+  flex: 0 0 auto;
+}
+
+.fs-canvas-sq .fs-logo {
+  width: 52px;
+  height: 52px;
+}
+
+.fs-canvas-ls .fs-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.fs-name {
+  max-width: 100%;
+  color: var(--fs-ink);
+  overflow-wrap: break-word;
+  font-family: var(--fs-sans);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.fs-canvas-sq .fs-name {
+  font-size: 22px;
+}
+
+.fs-canvas-ls .fs-name {
+  font-size: 20px;
+}
+
+.fs-groups {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fs-groups.fs-groups-fill {
+  justify-content: stretch;
+}
+
+.fs-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fs-groups-fill .fs-group {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.fs-group + .fs-group {
+  margin-top: 24px;
+}
+
+.fs-canvas-ls .fs-group + .fs-group {
+  margin-top: 16px;
+}
+
+.fs-sub {
+  font: 500 16px/1 var(--fs-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fs-muted);
+}
+
+.fs-group-row {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.fs-groups-fill .fs-group-row {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.fs-card-fixed {
+  flex: 1 1 0;
+  min-width: 0;
+  box-sizing: border-box;
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-rule);
+  border-radius: var(--fs-radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  min-height: 0;
+}
+
+.fs-canvas-sq .fs-card-fixed {
+  padding: 24px;
+}
+
+.fs-footer {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font: 500 16px/1 var(--fs-sans);
+  color: var(--fs-muted);
+}
+
+.fs-count {
+  color: var(--fs-ink);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fs-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--fs-rule);
+}
+
+.fs-bn-copy {
+  flex: 0 0 470px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.fs-canvas-bn .fs-chip {
+  padding: 8px 12px;
+  font-size: 16px;
+}
+
+.fs-canvas-bn .fs-title {
+  font-size: 42px;
+}
+
+.fs-bn-series {
+  margin: 0;
+  font: 500 16px/1 var(--fs-sans);
+  color: var(--fs-muted);
+}
+
+.fs-bn-pills {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  gap: 12px;
+  padding-right: 48px;
+}
+
+.fs-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-rule);
+  border-radius: var(--fs-radius);
+  padding: 8px 16px 8px 12px;
+  font: 500 18px/1.2 var(--fs-sans);
+  color: var(--fs-ink);
+}
+
+.fs-canvas-bn .fs-logo {
+  width: 28px;
+  height: 28px;
+}
+
+/* Temporary Foundation lab — /social/lab */
+.fs-lab-specimen {
+  width: 100%;
+  max-width: 960px;
+  box-sizing: border-box;
+  background: var(--fs-surface);
+  color: var(--fs-ink);
+  font-family: var(--fs-sans);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.fs-lab-specimen .fs-chip {
+  font-size: 22px;
+}
+
+.fs-lab-specimen .fs-name {
+  font-size: 22px;
+}
+
+.fs-lab-space {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font: 500 12px/1 var(--fs-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-muted);
+}
+
+.fs-lab-space-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fs-lab-space-row span {
+  width: 2.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.fs-lab-space-row i {
+  display: block;
+  height: 8px;
+  background: var(--color-on-surface);
+}
+
+.fs-lab-compare {
+  width: min(960px, calc(100vw - 3rem));
+}
+
+.fs-lab-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 28px 16px;
+}
+
+.fs-lab-logo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fs-lab-logo-well {
+  width: 52px;
+  height: 52px;
+}
+
+.fs-lab-logo-name,
+.fs-lab-logo-kind {
+  font: 500 11px/1.3 var(--fs-sans);
+}
+
+.fs-lab-logo-name {
+  color: var(--color-on-surface);
+}
+
+.fs-lab-logo-kind {
+  color: var(--color-on-surface-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

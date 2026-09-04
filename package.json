@@ -13,6 +13,7 @@
     "export:pdf:aon": "DECK=aon node scripts/export-pdf.mjs",
     "export:pdf:fund-admins": "DECK=fund-admins node scripts/export-pdf.mjs",
     "export:sheet": "node scripts/export-sheet.mjs",
+    "export:social": "node scripts/export-social.mjs",
     "export:pptx": "node scripts/export-pptx.mjs",
     "export:pptx:keynote-pdf": "osascript scripts/keynote-render.applescript && (cd output && pdftoppm -png -r 96 keynote.pdf keynote)",
     "export:pptx:verify": "node scripts/shoot-html.mjs && npm run export:pptx:keynote-pdf && PPTX_SRC=keynote node scripts/compare.mjs"
