@@ -14,9 +14,7 @@ export default function Home() {
       subtitle: socialMeta.subtitle,
       ticket: socialMeta.ticket,
       meta: "Square, landscape, LinkedIn banner",
-      downloads: [
-        fileDownload(socialMeta.downloads.png, "PNG zip"),
-      ] as DownloadLink[],
+      downloads: [fileDownload(socialMeta.downloads.png, "PNG zip")],
     },
     {
       key: "sheet",
