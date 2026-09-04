@@ -1,11 +1,23 @@
 import Link from "next/link";
 import { deckListings } from "@decks/catalog";
 import { sheetMeta } from "@/app/sheet/content";
+import { socialMeta } from "@/app/social/content";
 import DownloadButton from "@/components/ui/DownloadButton";
-import { pdfDownload, type DownloadLink } from "@/lib/downloads";
+import { fileDownload, pdfDownload, type DownloadLink } from "@/lib/downloads";
 
 export default function Home() {
   const items = [
+    {
+      key: "social",
+      href: socialMeta.href,
+      title: socialMeta.title,
+      subtitle: socialMeta.subtitle,
+      ticket: socialMeta.ticket,
+      meta: "Square, landscape, LinkedIn banner",
+      downloads: [
+        fileDownload(socialMeta.downloads.png, "PNG zip"),
+      ] as DownloadLink[],
+    },
     {
       key: "sheet",
       href: sheetMeta.href,
